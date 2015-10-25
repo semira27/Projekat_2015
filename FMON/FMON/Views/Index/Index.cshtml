@@ -1,0 +1,243 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Public.cshtml";
+    Context ctx = new Context();
+
+    List<Obavijesti> istaknuto = (List<Obavijesti>)ViewData["istaknuto"];
+    List<Obavijesti> obavijesti = (List<Obavijesti>)ViewData["obavijesti"];
+    Postavke postavke = (Postavke)ViewData["Kontakt"];
+    List<Konkursi> konkursi = (List<Konkursi>)ViewData["Konkursi"];
+    List<Konkursi> medjunarodni = (List<Konkursi>)ViewData["Medjunarodni"];
+
+}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<section>
+    <div class="panel panel-primary noPaddingPanelPrimary">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong></strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong></strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel-body no_padding">
+            <div id="carousel-example-captions" class="carousel carousel-images slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-captions" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-captions" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-captions" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    @if (istaknuto != null)
+                    {
+                        for (int i = 0; i < istaknuto.Count(); i++)
+                        {
+
+                            if (i == 0)
+                            {
+                                <div class="item active">
+                                    <img src="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite, istaknuto[i].SlikaObavijesti)" alt="slika" />
+                                    <div class="carousel-caption animated fadeInUpBig" style="text-align:left;">
+                                        <a class="obavijestColor" href="/Obavijest/Pregled/@istaknuto[i].ObavijestID">@Html.Raw(istaknuto[i].Sazetak)</a>
+
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="item">
+                                    <img src="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite, istaknuto[i].SlikaObavijesti)" alt="slika" />
+                                    <div class="carousel-caption animated fadeInUpBig" style="text-align:left;">
+                                        <a class="obavijestColor" href="/Obavijest/Pregled/@istaknuto[i].ObavijestID">@Html.Raw(istaknuto[i].Sazetak)</a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+
+                </div>
+                <a class="left carousel-control" href="#carousel-example-captions" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-captions" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body novostiBody">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#novosti" data-toggle="tab" class="NovostiTab">NOVOSTI</a></li>
+            <li><a href="#konkursi" data-toggle="tab" class="NovostiTab">JAVNI POZIVI/KONKURSI</a></li>
+            <li><a href="#medjunarodni" data-toggle="tab" class="NovostiTab">MEĐUNARODNI KONKURSI/POZIVI</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="novosti">
+                <div class="tab-pane">
+                    <!-- Tab novosti -->
+                    <ul class="ulNovosti">
+                        @if (obavijesti != null)
+                        {
+                            foreach (Obavijesti item in obavijesti)
+                            {
+                                <li class="media BoxNovosti">
+                                    <div class="media-body">
+                                        <p class="media-heading naslovNovosti"><a href="/Obavijest/Pregled/@item.ObavijestID" class="linkObavijesti"><b>@item.NaslovObavijesti</b></a></p>
+                                        <small>Datum obavijesti: @item.Datum.ToString("dd/MM/yyyy")</small>
+                                        <br />
+                                        <p>@Html.Raw(item.Sazetak)</p>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <!-- Tab novosti -->
+                </div>
+            </div>
+            <div class="tab-pane" id="konkursi">
+                <!-- Tab konkursi -->
+                @if (konkursi.Count() > 0)
+                {
+                    <ul class="ulNovosti">
+                        @foreach (Konkursi item in konkursi)
+                        {
+                            <li class="media konkursi_li">
+                                <div class="media-body">
+                                    <p class="media-heading konkursi_heading"><a href="/Konkurs/Index/@item.KonkursID">@item.Naziv</a></p>
+                                    <small>Datum: @item.Datum.ToString("dd/MM/yyyy")</small>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                <!-- Tab konkursi -->
+            </div>
+            <div class="tab-pane" id="medjunarodni">
+                <!-- Tab međunarodni konkursi i pozivi -->
+                @if (medjunarodni.Count() > 0)
+                {<ul class="ulNovosti">
+                    @foreach (Konkursi item in medjunarodni)
+                    {
+                        <li class="media konkursi_li">
+                            <div class="media-body">
+                                <p class="media-heading konkursi_heading"><a href="/Konkurs/Index/@item.KonkursID">@item.Naziv</a></p>
+                                <small>Datum: @item.Datum.ToString("dd/MM/yyyy")</small>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                }
+                <!-- Tab međunarodni konkursi i pozivi -->
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary noPaddingPanelPrimaryM">
+        <div class="panel-heading panelHeading">kontakt</div>
+        <div class="panel-body BodyPadding bodyCaptcha">
+            <div class="mapUredi">
+                <div id="googleMap" class="googleMaps" ></div>
+                <b>Federalno ministarstvo obrazovanja i nauke</b>
+                <p>
+                    @if (postavke != null)
+                    {
+                        if (postavke.UredMostarUlica != "")
+                        {
+                            <label>Ul: </label> @Html.Raw(postavke.UredMostarUlica) <br />
+                        }
+                        if (postavke.UredMostarTelefon1 != "")
+                        {
+                            <label>Telefon: </label> @Html.Raw(postavke.UredMostarTelefon1) 
+                        }
+                        if (postavke.UredMostarTelefon2 != "")
+                        {
+                            <label>Telefon: </label> @Html.Raw(postavke.UredMostarTelefon2) 
+                        }
+                        if (postavke.UredMostarFax1 != "")
+                        {
+                            <label>Fax: </label> @Html.Raw(postavke.UredMostarFax1)
+                        }
+                        if (postavke.UredMostarFax2 != "")
+                        {
+                            <label>&nbsp;</label>  @Html.Raw(postavke.UredMostarFax2)
+                        }
+                        if (postavke.UredMostarInfo1 != "")
+                        {
+                            <br /><label>e-mail: </label> @Html.Raw(postavke.UredMostarInfo1)  
+                        }
+                        if (postavke.UredMostarInfo2 != "")
+                        {
+                           <label>&nbsp;</label>  @Html.Raw(postavke.UredMostarInfo2)
+                        }
+                    }
+                </p>
+                <b>Ured u Sarajevu</b>
+                <p>
+                    @if (postavke != null)
+                    {
+                        if (postavke.UredSarajevoUlica != "")
+                        {
+                            <label>Ul: </label> @Html.Raw(postavke.UredSarajevoUlica) <br />
+                        }
+                        if (postavke.UredSarajevoTelefon1 != "")
+                        {
+                            <label>Telefon: </label> @Html.Raw(postavke.UredSarajevoTelefon1) 
+                        }
+                        if (postavke.UredSarajevoTelefon2 != "")
+                        {
+                            <label>Telefon: </label> @Html.Raw(postavke.UredSarajevoTelefon2) 
+                        }
+                        if (postavke.UredSarajevoFax1 != "")
+                        {
+                            <label>Fax: </label> @Html.Raw(postavke.UredSarajevoFax1) 
+                        }
+                        if (postavke.UredSarajevoFax2 != "")
+                        {
+                            <label>&nbsp;</label> @Html.Raw(postavke.UredSarajevoFax2)
+                        }
+                        if (postavke.UredSarajevoInfo1 != "")
+                        {
+                            <br /> <label>e-mail: </label> @Html.Raw(postavke.UredSarajevoInfo1) 
+                        }
+                        if (postavke.UredSarajevoInfo2 != "")
+                        {
+                            <label>&nbsp;</label> @Html.Raw(postavke.UredSarajevoInfo2)
+                        }
+                    }
+                </p>
+            </div>
+         
+    
+                
+    
+
+        </div>
+        @if (postavke != null)
+        {
+            if (postavke.IsActivePostaviPitanje == true)
+            {
+                <div class="panel panel-primary noPaddingPanelPrimaryM">
+                    <div class="panel-heading panelHeading">postavite pitanje</div>
+                    <div class="panel-body BodyPadding bodyCaptcha">
+                        <form method="post">
+                            <textarea name="pitanje" class="postaviPitanje"></textarea>
+                            <div class="g-recaptcha" data-sitekey="6LehfgkTAAAAAGR7nfMfFTtYA-mGbu10M_sUByne"></div>
+
+                            <input type="submit" class="btn btn-default PitanjeSubmit" value="Pošalji" />
+                        </form>
+                        <!-- Tab međunarodni konkursi i pozivi -->
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>

@@ -1,0 +1,38 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Pregled";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<RegistarNostrifikacija> registri = (List<RegistarNostrifikacija>)ViewData["registri"];
+}
+
+<link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataTable/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable();
+    });
+</script>
+
+<table id="table" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (RegistarNostrifikacija i in registri)
+        {
+            <tr>
+                <td>@i.Naziv</td>
+                <td>
+                    <a href="/Registar/IzmjenaRegistra?Id=@i.RegistarNostrifikacijaID" class="btn btn-success"> Izmijeni</a>
+                    <a href="/Registar/BrisanjeRegistra?Id=@i.RegistarNostrifikacijaID" class="btn btn-danger"> Obriši</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

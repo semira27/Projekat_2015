@@ -1,0 +1,44 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "SnimiVideo";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<form method="post">
+    <div class="col-lg-8">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Dodavanje novog video linka</h3>
+                <br />
+
+                <div class="form-group">
+                    <label>Naziv video materijala</label>
+                    <input class="form-control" placeholder="Unesite naziv" name="naziv">
+                </div>
+
+                <div class="form-group">
+                    <label>Youtube link</label>
+                    <input class="form-control" placeholder="Unesite putanju do linka" name="link">
+                </div>
+                <div class="form-group">
+
+                    <input type="submit" value="Snimi" class="btn btn-primary" />
+                </div>
+            </div>
+            </div></div>
+</form>
+

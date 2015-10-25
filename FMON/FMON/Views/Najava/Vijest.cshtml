@@ -1,0 +1,16 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Vijest";
+    Layout = "~/Views/Shared/_Public.cshtml";
+    Najave najava = (Najave)ViewData["najava"];
+}
+@if (najava != null)
+{
+    <div class="straniceBody">
+        <h3 class="foontFMON">@najava.Sazetak</h3>
+        <small>Datum i vrijeme: @najava.Datum.ToString("dd/MM/yyyy u HH:mm")h</small>
+        <h3 class="fmonFontColor"><b>Obavijest</b></h3>
+        <br />
+        @Html.Raw(najava.Vijest)
+    </div>
+}

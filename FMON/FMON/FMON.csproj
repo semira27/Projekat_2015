@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F5B13ACF-722E-4DE6-B922-3BCE27AE0E8C}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FMON</RootNamespace>
+    <AssemblyName>FMON</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiXssLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\AntiXSS.cs" />
+    <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="Controllers\AnketaController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\DokumentController.cs" />
+    <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\KonkursController.cs" />
+    <Compile Include="Controllers\LinkController.cs" />
+    <Compile Include="Controllers\NajavaController.cs" />
+    <Compile Include="Controllers\NostrifikacijaController.cs" />
+    <Compile Include="Controllers\ObavijestController.cs" />
+    <Compile Include="Controllers\PitanjaController.cs" />
+    <Compile Include="Controllers\PretragaController.cs" />
+    <Compile Include="Controllers\RegistarPController.cs" />
+    <Compile Include="Controllers\SektorController.cs" />
+    <Compile Include="Controllers\ZajmoviController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\CSS\animate.css" />
+    <Content Include="Content\CSS\animate.min.css" />
+    <Content Include="Content\CSS\bootstrap-theme.css" />
+    <Content Include="Content\CSS\bootstrap.css" />
+    <Content Include="Content\CSS\bootstrap.min.css" />
+    <Content Include="Content\CSS\bootstrap.vertical-tabs.css" />
+    <Content Include="Content\CSS\bootstrap.vertical-tabs.min.css" />
+    <Content Include="Content\CSS\fmon.css" />
+    <Content Include="Content\CSS\font-awesome.css" />
+    <Content Include="Content\CSS\font-awesome.min.css" />
+    <Content Include="Content\CSS\screen.css" />
+    <Content Include="Content\CSS\style.css" />
+    <Content Include="Content\CSS\width-full.css" />
+    <Content Include="Content\Fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Icon\cover.jpg" />
+    <Content Include="Content\Icon\doc.png" />
+    <Content Include="Content\Icon\mapaBiHSmall.jpg" />
+    <Content Include="Content\Icon\pdf.png" />
+    <Content Include="Content\Icon\ppt.png" />
+    <Content Include="Content\Icon\rar.png" />
+    <Content Include="Content\Icon\xls.png" />
+    <Content Include="Content\Icon\zip.png" />
+    <Content Include="Content\JS\calendar\zabuto_calendar.css" />
+    <Content Include="Content\JS\calendar\zabuto_calendar.js" />
+    <Content Include="Content\JS\js\app.js" />
+    <Content Include="Content\JS\js\bootstrap.js" />
+    <Content Include="Content\JS\js\bootstrap.min.js" />
+    <Content Include="Content\JS\js\holder.js" />
+    <Content Include="Content\JS\js\html5shiv.js" />
+    <Content Include="Content\JS\js\jquery-1.10.2.min.js" />
+    <Content Include="Content\JS\js\jquery.cookie.js" />
+    <Content Include="Content\JS\js\jquery.countdown.js" />
+    <Content Include="Content\JS\js\jquery.countdown.min.js" />
+    <Content Include="Content\JS\js\jquery.mixitup.min.js" />
+    <Content Include="Content\JS\js\modernizr.custom.js" />
+    <Content Include="Content\JS\js\respond.min.js" />
+    <Content Include="Content\JS\js\styleswitcher.js" />
+    <Content Include="Content\JS\lightbox\css\lightbox.css" />
+    <Content Include="Content\JS\lightbox\images\close.png" />
+    <Content Include="Content\JS\lightbox\images\loading.gif" />
+    <Content Include="Content\JS\lightbox\images\next.png" />
+    <Content Include="Content\JS\lightbox\images\prev.png" />
+    <Content Include="Content\JS\lightbox\js\lightbox.js" />
+    <Content Include="Content\JS\morris\morris.css" />
+    <Content Include="Content\JS\morris\morris.js" />
+    <Content Include="Content\JS\morris\prettify.min.css" />
+    <Content Include="Content\JS\morris\prettify.min.js" />
+    <Content Include="Content\JS\morris\raphael-min.js" />
+    <Content Include="Content\JS\syntax\shAutoloader.js" />
+    <Content Include="Content\JS\syntax\shBrushAppleScript.js" />
+    <Content Include="Content\JS\syntax\shBrushAS3.js" />
+    <Content Include="Content\JS\syntax\shBrushBash.js" />
+    <Content Include="Content\JS\syntax\shBrushColdFusion.js" />
+    <Content Include="Content\JS\syntax\shBrushCpp.js" />
+    <Content Include="Content\JS\syntax\shBrushCSharp.js" />
+    <Content Include="Content\JS\syntax\shBrushCss.js" />
+    <Content Include="Content\JS\syntax\shBrushDelphi.js" />
+    <Content Include="Content\JS\syntax\shBrushDiff.js" />
+    <Content Include="Content\JS\syntax\shBrushErlang.js" />
+    <Content Include="Content\JS\syntax\shBrushGroovy.js" />
+    <Content Include="Content\JS\syntax\shBrushJava.js" />
+    <Content Include="Content\JS\syntax\shBrushJavaFX.js" />
+    <Content Include="Content\JS\syntax\shBrushJScript.js" />
+    <Content Include="Content\JS\syntax\shBrushPerl.js" />
+    <Content Include="Content\JS\syntax\shBrushPhp.js" />
+    <Content Include="Content\JS\syntax\shBrushPlain.js" />
+    <Content Include="Content\JS\syntax\shBrushPowerShell.js" />
+    <Content Include="Content\JS\syntax\shBrushPython.js" />
+    <Content Include="Content\JS\syntax\shBrushRuby.js" />
+    <Content Include="Content\JS\syntax\shBrushSass.js" />
+    <Content Include="Content\JS\syntax\shBrushScala.js" />
+    <Content Include="Content\JS\syntax\shBrushSql.js" />
+    <Content Include="Content\JS\syntax\shBrushVb.js" />
+    <Content Include="Content\JS\syntax\shBrushXml.js" />
+    <Content Include="Content\JS\syntax\shCore.js" />
+    <Content Include="Content\JS\syntax\shLegacy.js" />
+    <Content Include="Global.asax" />
+    <None Include="Scripts\jquery-1.9.0.intellisense.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.9.0.js" />
+    <Content Include="Scripts\jquery-1.9.0.min.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Scripts\jquery-1.9.0.min.map" />
+    <Content Include="Views\Obavijest\Pregled.cshtml" />
+    <Content Include="Views\Shared\_Najave.cshtml" />
+    <Content Include="Views\Najava\Vijest.cshtml" />
+    <Content Include="Views\Nostrifikacija\Index.cshtml" />
+    <Content Include="Views\RegistarP\Index.cshtml" />
+    <Content Include="Views\Shared\_Social.cshtml" />
+    <Content Include="Views\Zajmovi\Index.cshtml" />
+    <Content Include="Views\Pretraga\Index.cshtml" />
+    <Content Include="Views\Pitanja\Index.cshtml" />
+    <Content Include="Views\Konkurs\Index.cshtml" />
+    <Content Include="Views\Link\Index.cshtml" />
+    <Content Include="Views\Shared\_Anketa.cshtml" />
+    <Content Include="Views\Anketa\Chart.cshtml" />
+    <Content Include="Views\Link\Institucije.cshtml" />
+    <Content Include="Views\Shared\_Calendar.cshtml" />
+    <Content Include="Views\Shared\_MapaInstitucija.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Public.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Index\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\CSS\style.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Fonts\FontAwesome.otf" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Admin\Admin.csproj">
+      <Project>{bd06aa8b-4f24-4226-9fa2-aa9e85fc70fc}</Project>
+      <Name>Admin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{2481460e-3063-4230-abe3-e72b6700e46e}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\fmon.app.fit.ba - Web Deploy.pubxml" />
+    <Content Include="Views\Shared\_Sektori.cshtml" />
+    <None Include="Properties\PublishProfiles\LocalPublish.pubxml" />
+    <Content Include="Views\Sektor\Index.cshtml" />
+    <Content Include="Views\Dokument\Index.cshtml" />
+    <Content Include="Views\Shared\_Video.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3154</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3154/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

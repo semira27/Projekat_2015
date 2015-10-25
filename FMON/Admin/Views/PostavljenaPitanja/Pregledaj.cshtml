@@ -1,0 +1,25 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Pregledaj";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    PostaviPitanje pitanje = (PostaviPitanje) ViewData["pitanje"];
+}
+@if(pitanje!=null)
+{ 
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h3>Pregled pitanja</h3>
+        <br />
+
+        <div class="form-group">
+
+            <p><b>Pitanje:</b> @pitanje.Pitanje</p>
+            <br/>
+            <p><b>Postavljeno:</b> @pitanje.Datum.ToString("dd-MM-yyyy")</p>
+
+        </div>
+    </div>
+
+</div>
+    <a href="/PostavljenaPitanja/Index" class="btn btn-info"> Nazad</a>
+}

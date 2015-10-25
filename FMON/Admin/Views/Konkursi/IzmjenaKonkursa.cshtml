@@ -1,0 +1,139 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "IzmjenaKonkursa";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+   List<KonkursiDokumenti> kd =(List<KonkursiDokumenti>)ViewData["dokumenti"];
+   Konkursi k = (Konkursi) ViewData["konkurs"];
+}
+
+<link href="~/Content/datepicker/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/datepicker/jquery.datetimepicker.js"></script>
+<script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
+<link href="~/Content/js/FileUpload/fileinput.css" rel="stylesheet" />
+<link href="~/Content/js/FileUpload/fileinput.min.css" rel="stylesheet" />
+<script src="~/Content/js/FileUpload/fileinput.js"></script>
+<script src="~/Content/js/FileUpload/fileinput.min.js"></script>
+<script src="~/Content/js/FileUpload/fileinput_locale_es.js"></script>
+<script>
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    });
+</script>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="col-lg-8">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Izmjena konkursa</h3>
+                <input type="hidden" name="konkursID" value="@k.KonkursID" />
+                <br />
+                <label for="disabledSelect">Naziv konkursa</label>
+                <input class="form-control" name="naziv" placeholder="@k.Naziv">
+                <br />
+                @if (k.IsMedjunarodni == true)
+                {
+                    <select name="konkurs" class="form-control">
+                        <option value="1">Konkurs za BiH</option>
+                        <option value="2" selected>Međunarodni konkurs</option>
+                    </select>
+                    <br />
+                }
+                else
+                {
+                    <select name="konkurs" class="form-control">
+                        <option value="1" selected>Konkurs za BiH</option>
+                        <option value="2" >Međunarodni konkurs</option>
+                    </select>
+                    <br />
+                }
+
+                <label for="disabledSelect">Obavijest</label>
+                <textarea class="form-control" rows="3" name="obavijest">@k.Obavijest</textarea>
+                <br />
+
+
+                @if (kd.Count > 0)
+                {
+                    foreach (KonkursiDokumenti i in kd)
+                    {
+                        if (i.TipDokumenta == ".rar")
+                        {
+                            <a href="@i.Putanja">
+                                <img src="~/Content/Icon/rar.png" />
+                            </a>
+                            <p>@i.Naziv</p>
+                        }
+                        else if (i.TipDokumenta == ".doc" || i.TipDokumenta == ".docx")
+                        {
+                            <a href="@i.Putanja">
+                                <img src="~/Content/Icon/doc.png" />
+                            </a>
+                            <p>@i.Naziv</p>
+                        }
+                        else if (i.TipDokumenta == ".zip")
+                        {
+                            <a href="@i.Putanja">
+                                <img src="~/Content/Icon/zip.png" />
+                            </a>
+                            <p>@i.Naziv</p>
+                        }
+                        else if (i.TipDokumenta == ".xls" || i.TipDokumenta == ".xlsx")
+                        {
+                            <a href="@i.Putanja">
+                                <img src="~/Content/Icon/xls.png" />
+                            </a>
+                            <p> @i.Naziv</p>
+                        }
+                        else if (i.TipDokumenta == ".ppt" || i.TipDokumenta == ".pptx")
+                        {
+                            <a href="@i.Putanja">
+                                <img src="~/Content/Icon/ppt.png" />
+                            </a>
+                            <p> @i.Naziv</p>
+                        }
+                        else if (i.TipDokumenta == ".pdf")
+                        {
+                            <a href="@i.Putanja">
+                                <img src="~/Content/Icon/pdf.png" />
+                            </a>
+                            <p> @i.Naziv</p>
+                        }
+                    }
+                    <br />
+                }
+                @if (kd.Count > 0)
+                {
+                    <label for="disabledSelect">Odaberite dokumente(<span style="color:#ff6a00;">Dodavanjem novih dokumenata obrisat ćete stare dokumente</span>)</label>
+                }
+                else
+                {
+                    <label for="disabledSelect">Odaberite dokumente</label>
+                }
+                <input id="file-0a" class="file" name="dokumenti" type="file" multiple data-min-file-count="0" />
+                <br />
+                <button type="submit" class="btn btn-primary">Snimi</button>
+
+            </div>
+        </div>
+    </div>
+</form>

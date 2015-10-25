@@ -1,0 +1,669 @@
+﻿.tekstSektori {
+    color:#fff; 
+    margin-left:70px !important;
+    color:#fff !important;
+}
+.fontNaslovnaTraka {
+    font-size:12.5px !important;
+}
+
+.postaviPitanje {
+    width:100%; 
+    margin-bottom:10px;
+
+}
+.PitanjeSubmit {
+    margin-top:5px;
+
+}
+.bodyBorder {
+border:1px solid #dcdada !important;
+}
+.bodyCaptcha {
+padding:5px !important; border:1px solid #f2f2f2 !important;
+}
+.sektori {
+    width: 100%;
+    margin-bottom: 5px;
+    min-height: 50px;
+    background-color: #152D53;
+    text-align:right;
+    padding-right:10px;
+}
+.slikeBox {
+width:100px; height:100px; float:left; margin:5px; 
+
+}
+.foontFMON {
+    font-family: Verdana,Tahoma, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+    color: #152D53;
+}
+.searchBoxButton {
+border:1px solid #fff !important;
+background-color:#F5F5F5;
+color:#152D53;
+}
+.searchBoxButton:active {
+border:1px solid #7faaea !important;
+
+}
+.searchBoxButton:hover {
+
+background-color:#7faaea;
+
+}
+
+.ikonice {
+    border: none !important;
+    width: 48px !important;
+    background-color: #152D53 !important;
+}
+
+.nazivSektora {
+    background-color: #152D53 !important;
+    text-align: left !important;
+}
+
+.topPanel {
+    margin-top: 0px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    padding: 3px 0px;
+    background-color: rgb(2,35,80);
+}
+
+.noPadding {
+}
+
+.searchBox {
+    background-color: #152D53;
+    color: #fff;
+    font-size: 16px;
+}
+
+.fmonLogo {
+    background-image: url('../../Content/Icon/cover.jpg');
+    background-repeat: no-repeat;
+    height: 90px;
+}
+
+.noPaddingContainer {
+    padding-left: 0;
+    background-color: #152D53;
+}
+
+.panelHeading {
+    text-transform: uppercase;
+    background-color: #152D53 !important;
+}
+
+.MapaInstitucijaBody {
+    padding: 4px 2px 2px 2px;
+    background-image: url('../../Content/Icon/mapaBiHSmall.jpg');
+    height: 250px;
+    background-repeat: no-repeat;
+    position: center;
+}
+
+
+.imageMap {
+    width:100%;
+    height: 100%;
+    position:relative;
+    margin-bottom:200px;
+}
+.imageMap img {
+    display:block;
+    width:100%;
+}
+.imageMap .hotspots {
+    width:100%;
+    height:100%;
+    visibility:hidden;
+    display:block;
+    overflow: hidden;
+}
+.imageMap a {
+    display:block;
+    position:absolute;
+    background:#ed1010;
+    z-index:1;
+    opacity:0.1;
+    border:1px solid transparent;
+    border-radius:10px;
+}
+.imageMap a + p {
+    position:absolute;
+    left:0%;
+    top:102%;
+    width:100%;
+    color:#000;
+    display:none;
+}
+.imageMap:hover .hotspots {
+    visibility:visible;
+}
+.imageMap p strong { 
+    display:block;
+    padding:0;
+    margin:0;
+    font: bold 25px/30px'times new roman', serif;
+    color:#000;
+}
+.imageMap p {
+    padding:0;
+    margin:0;
+    font: normal 18px/22px'times new roman', serif;
+    color:#444;
+}
+.imageMap .hotspots div:hover b {
+    width:0;
+    padding:0;
+
+}
+.imageMap .hotspots div:hover p {
+    display:block;
+
+}
+.imageMap .hotspots div:hover a {
+    background:#fff;
+    z-index:100;
+
+}
+
+.imageMap a.p1 {
+    left:37.5px;
+    top:33px;
+    width:25px;
+    height:25px;
+    border-radius:20px;
+}
+
+.imageMap a.p2 {
+    left:175px;
+    top:4px;
+    width:25px;
+    height:25px;
+    border-radius:20px;
+}
+.imageMap a.p3 {
+    left:192px;
+    top:53px;
+    width:25px;
+    height:25px;
+    border-radius:20px;
+}
+.imageMap a.p4 {
+    left:165px;
+    top:74px;
+    width:25px;
+    height:25px;
+    border-radius:20px;
+}
+.imageMap a.p5 {
+    left:209px;
+    top:130px;
+    width:25px;
+    height:25px;
+    border-radius:20px;
+}
+.imageMap a.p6 {
+    left:131px;
+    top:94px;
+    width:25px;
+    height:25px;
+    border-radius:20px;
+}
+.imageMap a.p7 {
+    left:143px;
+    top:141px;
+    width:25px;
+    height:25px;
+    border-radius:20px;
+}
+.imageMap a.p8 {
+    left:121px;
+    top:154px;
+    width:25px;
+    height:25px;
+    border-radius:20px;
+}
+.imageMap a.p9 {
+    left:168px;
+    top:123px;
+    width:25px;
+    height:25px;
+    border-radius:20px;
+}
+.imageMap a.p10 {
+    left:84px;
+    top:102px;
+    width:25px;
+    height:25px;
+    border-radius:20px;
+}
+
+.noPaddingPanelPrimary {
+    padding-left: 0;
+    padding-right: 0;
+    border: none;
+    margin-bottom: 5px;
+}
+
+.noPaddingPanelPrimaryM {
+    padding-left: 0;
+    padding-right: 0;
+    border: none;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.kalendarBody {
+    padding: 0px;
+    min-height: 312px;
+}
+
+.kalendar {
+    width: 100%;
+    background-color: #fff;
+    border: none;
+    height: 0px;
+}
+
+.noPaddingMid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.BodyPadding {
+    padding: 2px 0px 2px 0px;
+}
+
+.najavaBox {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.najavaIcon {
+    border: none !important;
+    background-color: #F5F5F5 !important;
+    width: 48px !important;
+    font-size: 12px !important;
+    color: #152D53 !important;
+    border-bottom: 2px solid #fff !important;
+}
+
+.najavaSadrzaj {
+    background-color: #F5F5F5 !important;
+    text-align: left !important;
+    border-bottom: 2px solid #fff !important;
+}
+
+    .najavaSadrzaj a {
+        color: #152D53;
+    }
+
+.najavaDatum {
+    font-size: 12px;
+    background-color: #152D53;
+}
+
+.fmonFontColor {
+    color: #152D53 !important;
+}
+
+.fmonBackColor {
+    background-color: #152D53 !important;
+}
+
+.NovostiTab:active {
+    background-color: #152D53 !important;
+    color: #fff !important;
+    border-top: 2px solid #152D53 !important;
+    border-right:1px solid #fff !important;
+}
+
+
+.KonkursiTab {
+    background-color: #808080 !important;
+    color: #fff !important;
+    border-top: 2px solid #808080 !important;
+}
+
+.novostiBody {
+    margin-top: 10px !important;
+    padding: 0px !important;
+}
+
+.BoxNovosti {
+    padding: 0px 0px 12px 0px !important;
+    border-bottom: 1px solid #9E9E9E !important;
+}
+
+    .BoxNovosti:last-child {
+        padding: 0px !important;
+        border-bottom: none !important;
+    }
+
+.naslovNovosti {
+    margin-bottom: 8px;
+}
+
+    .naslovNovosti a {
+        color: #152D53;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+.linkObavijesti {
+    font-size: 16px;
+}
+
+.sazetakNovosti {
+    font-size: 14px;
+    text-align: inherit;
+    margin-top: 6px;
+}
+
+.ulNovosti {
+    padding: 0px;
+}
+
+.konkursi_li:last-child {
+    padding: 0px;
+    border-bottom: none;
+}
+
+.konkursi_li {
+    padding: 0px 0px 12px 0px;
+    border-bottom: 1px solid #9E9E9E;
+}
+
+.konkursi_heading {
+    margin-bottom: 8px !important;
+}
+
+    .konkursi_heading a {
+        color: #152D53;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+.mapUredi {
+    padding: 2px 1px !important;
+}
+
+.googleMaps {
+    width: 100%;
+    height: 200px;
+
+}
+
+.javniPozivi {
+    padding: 2px 2px 2px 4px !important;
+}
+
+    .javniPozivi a {
+        color: #152D53;
+        font-size: 12px;
+        text-align: inherit;
+    }
+
+.containerPadding {
+    padding: 1px !important;
+}
+
+.rowPadding {
+    padding-top: 5px !important;
+}
+
+.Box12Padding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.Box3Padding {
+    padding-left: 0 !important;
+    padding-right: 5px !important;
+}
+
+.headerLogo {
+    border-bottom: 1px solid #fff !important;
+    height: 92px !important;
+    background-color: #152D53 !important;
+}
+
+.md12NopaddingLeft {
+    padding-left: 0 !important;
+}
+
+.lowRezfont {
+    font-size: 16px !important;
+    text-transform:uppercase !important;
+}
+
+.sektoriPanelPadding {
+    padding: 0px !important;
+}
+
+.iFrameVideo {
+    width: 100%;
+    height: 218px;
+}
+
+.rightSideBar {
+    padding-left: 5px !important;
+    padding-right: 0 !important;
+}
+.videoBox {
+
+    padding-right:1px;
+}
+
+.noPadingMargin {
+    margin: 0;
+    padding: 0;
+}
+
+.no_padding {
+    padding: 0px !important;
+}
+
+.dropdown-toggle:hover {
+    background-color: #7faaea !important;
+}
+
+
+.straniceBody {
+    padding: 5px 10px;
+    border: 1px solid #dddfe2;
+    min-height: 880px;
+    overflow: auto;
+}
+
+.doktabovi {
+    border-top: 0px;
+    border-bottom: 0px;
+}
+
+.dokumenti {
+    border-left: 2px solid #464782;
+    border-bottom: 0px;
+    background-color: #fff;
+}
+
+.spanDatum {
+    font-size: 12px;
+}
+
+
+.obavijestColor {
+    color: #fff;
+}
+
+    .obavijestColor:hover {
+        font-weight: bold !important;
+        color: #fff;
+        text-decoration: none;
+    }
+
+.slikaObavijesti {
+    width: 100%;
+    height: 350px;
+}
+
+.iconFacebook {
+   
+    color: #fff !important;
+    border: none !important;
+}
+.iconFacebook:hover {
+   
+    background-color:#464782 !important;
+}
+
+.iconTwitter {
+   
+    color: #fff !important;
+    border: none !important;
+}
+.iconTwitter:hover {
+   
+background-color:#45e6f1 !important;
+}
+
+.iconYoutube {
+
+    color: #fff !important;
+    border: none !important;
+}
+.iconYoutube:hover {
+background-color:#a80d0d !important;
+}
+
+.anketaBox {
+    padding:2px 10px 10px 10px;
+}
+
+.slikeGalerija {
+    min-height:180px; overflow:auto;
+}
+
+
+.test123 li:active {
+
+    background-color:red !important;
+}
+
+    .sektorBox {
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        padding-top: 5px;
+    }
+
+        .sektorBox h4 {
+            margin-left: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color:#152D53;
+        }
+
+        .sektorBox:hover {
+            -webkit-box-shadow: inset -1px -16px 180px 72px rgba(99,184,255,0.5);
+            -moz-box-shadow: inset -1px -16px 180px 72px rgba(99,184,255,0.5);
+            box-shadow: inset -1px -16px 180px 72px rgba(99,184,255,0.5);
+        }
+
+
+[data-tooltip] {
+  position: relative;
+  z-index: 1001;
+  cursor: pointer;
+  background-color:#152D53; 
+  opacity:0.9 !important ;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  opacity: 1;
+  pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-bottom: 5px;
+  margin-left: -80px;
+  padding: 7px;
+  width: 160px;
+   background-color:#152D53;
+    background-color:#152D53;
+  color: #fff;
+  font-weight:bold;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+    opacity:1;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  opacity:1;
+  background-color:#152D53;
+}
+
+
+@media only screen and (max-width : 768px){
+   .tekstSektori {
+    margin-right:10px;
+    
+    }
+    .col-xs-12 {
+    margin-left:5px !important;
+    margin-right:5px !important;
+    }
+    .col-md-3{
+    margin-left:5px !important;
+    margin-right:5px !important;
+    }
+    .media-list {
+    margin-left:10px;
+    }
+    .bodyCaptcha {
+    padding-left:15px !important;
+    }
+    .nav-tabs {
+    margin-left:10px !important;
+    }
+    .postaviPitanje {
+    width:96%;
+    }
+    .searchBox {
+    width:305px !important;
+    }
+    .googleMaps {
+    width:95%;
+    }
+	}

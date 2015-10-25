@@ -1,0 +1,42 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Pregled";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<PitanjaOdgovori> pitanja = (List<PitanjaOdgovori>)ViewData["pitanja"];
+}
+
+
+<link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataTable/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable();
+    });
+</script>
+
+<table id="table" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+
+            <th>Pitanje</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (PitanjaOdgovori i in pitanja)
+        {
+            <tr>
+                <td>@i.Pitanje</td>
+                <td>
+                    <a href="/PitanjaOdgovori/IzmjenaPitanja?Id=@i.PitanjaOdgovoriID" class="btn btn-success"> Izmijeni</a>
+                    <a href="/PitanjaOdgovori/BrisanjePitanja?Id=@i.PitanjaOdgovoriID" class="btn btn-danger"> Obriši</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+

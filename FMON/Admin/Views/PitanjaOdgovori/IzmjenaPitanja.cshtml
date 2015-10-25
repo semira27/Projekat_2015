@@ -1,0 +1,57 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "IzmjenaPitanja";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    PitanjaOdgovori p = (PitanjaOdgovori)ViewData["pitanja"];
+}
+
+<link href="~/Content/datepicker/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/datepicker/jquery.datetimepicker.js"></script>
+<script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
+
+<script>
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    });
+</script>
+
+<form method="post">
+    <div class="col-lg-8">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Izmjena pitanja</h3>
+                <br />
+                <input type="hidden" name="pitanjeID" value="@p.PitanjaOdgovoriID" />
+                <label for="disabledSelect">Pitanje</label>
+                <input class="form-control" name="pitanje" placeholder="@p.Pitanje">
+                <br />
+                <label for="disabledSelect">Odgovor</label>
+                <textarea class="form-control" rows="3" name="odgovor">@p.Odgovor</textarea>
+                <br />
+                <button type="submit" class="btn btn-primary">Snimi</button>
+
+            </div>
+        </div>
+        <a href="/PitanjaOdgovori/Pregled" class="btn btn-info"> Nazad</a>
+    </div>
+</form>

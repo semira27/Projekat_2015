@@ -1,0 +1,78 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "IzmjenaSektora";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+
+    Sektori s = (Sektori)ViewData["Sektor"];
+}
+
+<link href="~/Content/js/FileUpload/fileinput.css" rel="stylesheet" />
+<link href="~/Content/js/FileUpload/fileinput.min.css" rel="stylesheet" />
+<script src="~/Content/js/FileUpload/fileinput.js"></script>
+<script src="~/Content/js/FileUpload/fileinput.min.js"></script>
+<script src="~/Content/js/FileUpload/fileinput_locale_es.js"></script>
+
+<script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    });
+</script>
+
+<form method="post" action="/Sektori/IzmjenaSektora" enctype="multipart/form-data">
+    <div class="col-lg-8">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <input type="hidden" value="@s.SektorID" name="sektorId"/>
+                <h3>Izmjena informacija sektora</h3>
+                <br />
+                <label for="disabledSelect">Trenutna ikonica sektora</label>
+                <br />
+                <img src="@s.IkonaSektora" />
+                <br />
+                <label for="disabledSelect">Trenutna slika sektora (<span style="color:#ff6a00;">prikazana umanjena verzija</span>)</label>
+                <br />
+                <img src="@s.Slika" width="100" height="100" />
+                <br />
+                <label for="disabledSelect">Odaberite novu ikonicu sektora</label>
+                <input id="file-0a" class="file" name="ikonica" type="file" multiple data-min-file-count="0" />
+                <br>
+                <label for="disabledSelect">Odaberite novu sliku sektora</label>
+                <input id="file-0a" class="file" name="slika" type="file" multiple data-min-file-count="0" />
+                <br />
+                <label for="disabledSelect">Unesite novi naziv sektora</label>
+                <input class="form-control" name="naziv" placeholder="@s.NazivSektora">
+                <br />
+                <label for="disabledSelect">Unesite novi redoslijed sektora</label>
+                <input class="form-control" name="redosljed" placeholder="@s.Redoslijed">
+                <br />
+                <label for="disabledSelect">Unesite nove informacije o sektoru</label>
+                <textarea class="form-control" rows="7" name="opis">@s.OSektoru</textarea>
+                <br />
+                <button type="submit" class="btn btn-primary">Snimi</button>
+
+            </div>
+        </div>
+        <a href="/Sektori/SviSektori" class="btn btn-info"> Nazad</a>
+    </div>
+</form>

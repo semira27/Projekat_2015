@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Snimi";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+<form method="post">
+    <div class="col-lg-6">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Unos nove ankete</h3>
+                <br/>
+                <label for="disabledSelect">Unesite anketno pitanje</label>
+                <input class="form-control" name="pitanje">
+                <br />
+                <button type="submit" class="btn btn-primary">Snimi</button>
+            </div>
+        </div>
+    </div>
+</form>

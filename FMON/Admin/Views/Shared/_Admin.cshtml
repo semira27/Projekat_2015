@@ -1,0 +1,263 @@
+﻿@using System;
+@using System.Linq;
+@using System.Web;
+@using System.Web.Mvc;
+@using Data.Model;
+@{
+    Layout = null;
+
+    Korisnici ko = HttpContext.Current.Session["korisnik"] as Korisnici;
+
+    Context ctx = new Context();
+
+    List<PostaviPitanje> notifikacija = ctx.PostaviPitanjes.Where(x => x.IsActive && x.PitanjePregledano == false).ToList();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_Admin</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/Content/css/sb-admin.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="~/Content/css/dataTables.bootstrap.css" rel="stylesheet" />
+
+    <script src="~/Content/js/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/js/bootstrap.js"></script>
+</head>
+<body>
+
+        
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color:#4B9FEA;">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Home/Home" style="color:white;">FMON</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    @if (ko != null)
+                    {
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white;"><i class="fa fa-user"></i> @ko.KorisnickoIme <b class="caret"></b></a>
+                    }
+                    <ul class="dropdown-menu">
+                        @if (ko != null)
+                        {
+                        <li>
+                                <a href="/User/IzmjenaKorisnika?Id=@ko.KorisnikID"><i class="fa fa-fw fa-user"></i> Profil</a>
+                        </li>
+                        }
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/Login/Logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu1"><i class="fa fa-fw fa-file-text"></i> Obavijesti <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu1" class="collapse">
+                            <li>
+                                <a href="/Obavijesti/DodajObavijest">Dodaj</a>
+                            </li>
+                            <li>
+                                <a href="/Obavijesti/SveObavijesti">Pregled</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu3"><i class="fa fa-fw fa-file"></i> Dokumenti <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu3" class="collapse">
+                            <li>
+                                <a href="~/Dokumenti/Index">Dodaj</a>
+                            </li>
+                            <li>
+                                <a href="~/Dokumenti/SviDokumenti">Pregled dokument</a>
+                            </li>
+                            <li>
+                                <a href="~/Dokumenti/Kategorije">Pregled kategorija</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu12"><i class="fa fa-book"></i> Konkursi <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu12" class="collapse">
+                            <li>
+                                <a href="/Konkursi/Snimi">Dodaj</a>
+                            </li>
+                            <li>
+                                <a href="/Konkursi/Pregled">Pregled</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu5"><i class="fa fa-fw fa-comment"></i> Najave za medije <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu5" class="collapse">
+                            <li>
+                                <a href="~/Najave/InsertNajave">Dodaj</a>
+                            </li>
+                            <li>
+                                <a href="~/Najave/SveNajave">Pregled</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                  
+                        <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu6"><i class="fa fa-th-large"></i> Studentski zajmovi <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu6" class="collapse">
+                            <li>
+                                <a href="/StudentskiZajmovi/Snimi">Dodaj</a>
+                            </li>
+                            <li>
+                                <a href="~/StudentskiZajmovi/Pregled">Pregled</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu7"><i class="fa fa-folder"></i> Registar <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu7" class="collapse">
+                            <li>
+                                <a href="/Registar/Snimi">Dodaj</a>
+                            </li>
+                            <li>
+                                <a href="~/Registar/Pregled">Pregled</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                 
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu14"><i class="fa fa-fw fa-calendar"></i> Kalendar <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu14" class="collapse">
+                            <li>
+                                <a href="/Kalendar/Snimi">Dodaj</a>
+                            </li>
+                            <li>
+                                <a href="/Kalendar/Pregled">Pregled</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu4"><i class="fa fa-fw fa-video-camera"></i> Video materijali <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu4" class="collapse">
+                            <li>
+                                <a href="~/Video/SnimiVideo">Dodaj</a>
+                            </li>
+                            <li>
+                                <a href="~/Video/IzmijeniVideo">Pregled</a>
+                            </li>
+                        </ul>
+                    </li>
+
+   
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu13"><i class="fa fa-newspaper-o"></i> Anketa<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu13" class="collapse">
+                            <li>
+                                <a href="~/Ankete/Snimi">Dodaj</a>
+                            </li>
+                            <li>
+                                <a href="~/Ankete/Pregled">Pregled</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu9"><i class="fa fa-fw fa-map-marker"></i> Linkovi <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu9" class="collapse">
+                            <li>
+                                <a href="~/Linkovi/DodajLink">Dodaj link</a>
+                            </li>
+                            <li>
+                                <a href="~/Linkovi/Pregled">Pregled</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu8"><i class="fa fa-fw fa-users"></i> Korisnici <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu8" class="collapse">
+                            <li>
+                                <a href="~/User/AddUser">Dodaj</a>
+                            </li>
+                            <li>
+                                <a href="~/User/SviKorisnici">Pregled</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu2"><i class="fa fa-fw fa-bars"></i> Sektori <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu2" class="collapse">
+                            <li>
+                                <a href="~/Sektori/InsertSektor">Dodaj</a>
+                            </li>
+                            <li>
+                                <a href="~/Sektori/SviSektori">Pregled</a>
+                            </li>
+                        </ul>
+                    </li>
+             
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu11"><i class="fa fa-question-circle"></i> Pitanja i odgovori<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu11" class="collapse">
+                            <li>
+                                <a href="~/PitanjaOdgovori/Snimi">Dodaj</a>
+                            </li>
+                            <li>
+                                <a href="~/PitanjaOdgovori/Pregled">Pregled</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#menu10"><i class="fa fa-graduation-cap"></i> Nostrifikacije<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="menu10" class="collapse">
+                            <li>
+                                <a href="~/Nostrifikacije/DodajNostrifikaciju">Dodaj</a>
+                            </li>
+                            <li>
+                                <a href="~/Nostrifikacije/SveNostrifikacije">Pregled</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/PostavljenaPitanja/Index"><i class="fa fa-question-circle"></i> Postavljena pitanja
+                            @if (notifikacija.Count()>0)
+                            {
+                                <span style="background-color:red; color:#fff; width:40px; height:20px; border-radius:8px; padding:5px;">@notifikacija.Count()</span>
+                            }
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Kantoni/Pregled"><i class="fa fa-building-o"></i>  Kantoni</a>
+                    </li>
+                    <li>
+                        <a href="~/Settings/Index"><i class="fa fa-cogs"></i>  Postavke</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+        <div id="page-wrapper" style="min-height:950px; overflow:auto;">
+            @RenderBody()
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+</body>
+</html>

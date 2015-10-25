@@ -1,0 +1,238 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    Postavke setting = (Postavke)ViewData["settings"];
+}
+
+<form action="~/Settings/Index" method="post">
+
+    <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">
+                    <button data-dismiss="alert" class="close" type="button">×</button>
+                    <strong>Greška!</strong> @ViewBag.Error
+                </div>
+            }
+            @if (ViewBag.Success != null)
+            {
+                <div class="alert alert-success">
+                    <button data-dismiss="alert" class="close" type="button">×</button>
+                    <strong>Obavljeno!</strong> @ViewBag.Success
+                </div>
+            }
+            <h3>Generalne informacije o ministarstvu</h3>
+            <hr/>
+            @if (setting.IsActivePostaviPitanje)
+            {
+                <p>
+                    <input type="checkbox" checked name="isActive"> <b>Da li je aktivan modul postavi pitanje?</b>
+                </p>
+            }
+            else
+            {
+                <p>
+                    <input type="checkbox" name="isActive"> Da li je aktivan modul postavi pitanje?
+                </p>
+            }
+            <br />
+            <label>Referentna email adresa</label>
+            <input class="form-control" placeholder="Unesite refrentnu adresu" name="referentniMail1" value="@setting.ReferentniMail1">
+            <br />
+            <label>Referentna email adresa</label>
+            <input class="form-control" placeholder="Unesite refrentnu adresu" name="referentniMail2" value="@setting.ReferentniMail2">
+            <br />
+            <label>Referentna email adresa</label>
+            <input class="form-control" placeholder="Unesite refrentnu adresu" name="referentniMail3" value="@setting.ReferentniMail3">
+            <br />
+
+            <label>Link youtube kanala</label>
+            <input class="form-control" placeholder="Unesite link youtube kanala" name="youtube" value="@setting.LinkYoutube">
+            <br />
+            <label>Link twitter stranice</label>
+            <input class="form-control" placeholder="Unesite link twitter stranice" name="twitter" value="@setting.LinkTwitter">
+            <br />
+            <label>Link facebook stranice</label>
+            <input class="form-control" placeholder="Unesite link facebook stranice" name="facebook" value="@setting.LinkFacebook">
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
+            <h3>Mostar</h3>
+
+            <label>Ulica</label>
+            <input class="form-control" placeholder="Unesite ulicu" name="mostarulica" value="@setting.UredMostarUlica">
+
+            <label>Telefonski broj</label>
+            <input class="form-control" placeholder="Unesite telefonski broj" name="mostarTel1" value="@setting.UredMostarTelefon1">
+
+            <label>Telefonski broj</label>
+            <input class="form-control" placeholder="Unesite telefonski broj" name="mostarTel2" value="@setting.UredMostarTelefon2">
+
+            <label>Fax kontakt</label>
+            <input class="form-control" placeholder="Unesite fax kontakt" name="mostarfax1" value="@setting.UredMostarFax1">
+
+            <label>Fax kontakt</label>
+            <input class="form-control" placeholder="Unesite fax kontakt" name="mostarfax2" value="@setting.UredMostarFax2">
+
+            <label>Info e-mail</label>
+            <input class="form-control" placeholder="Unesite info e-mail adresu" name="mostarinfo1" value="@setting.UredMostarInfo1">
+
+            <label>Info e-mail</label>
+            <input class="form-control" placeholder="Unesite info e-mail adresu" name="mostarinfo2" value="@setting.UredMostarInfo2">
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
+            <h3>Sarajevo</h3>
+
+            <label>Ulica</label>
+            <input class="form-control" placeholder="Unesite ulicu" name="saulica" value="@setting.UredSarajevoUlica">
+
+            <label>Telefonski broj</label>
+            <input class="form-control" placeholder="Unesite telefonski broj" name="satel1" value="@setting.UredSarajevoTelefon1">
+
+            <label>Telefonski broj</label>
+            <input class="form-control" placeholder="Unesite telefonski broj" name="satel2" value="@setting.UredMostarTelefon2">
+
+            <label>Fax kontakt</label>
+            <input class="form-control" placeholder="Unesite fax kontakt" name="safax1" value="@setting.UredSarajevoFax1">
+
+            <label>Fax kontakt</label>
+            <input class="form-control" placeholder="Unesite fax kontakt" name="safax2" value="@setting.UredMostarFax2">
+
+            <label>Info e-mail</label>
+            <input class="form-control" placeholder="Unesite info e-mail adresu" name="sainfo1" value="@setting.UredSarajevoInfo1">
+
+            <label>Info e-mail</label>
+            <input class="form-control" placeholder="Unesite info e-mail adresu" name="sainfo2" value="@setting.UredSarajevoInfo2">
+            <br />
+            <input type="submit" value="Snimi" class="btn btn-primary" />
+</div>
+        </div>
+
+
+    <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
+            <h3>Postavke glavnog menia</h3>
+
+            <label>Naslovna</label>
+            <input class="form-control" placeholder="Naslovna" name="naslovna" value="@setting.NaslovnaTekst">
+            @if (setting.NaslovnaIsActive == true)
+            {
+                <p>
+                    <input type="checkbox" checked name="NaslovnaisActive"> <b>Aktivno</b>
+                </p>
+            }
+            else
+            {
+                <p>
+                    <input type="checkbox" name="NaslovnaisActive"> <b>Aktiviraj</b>
+                </p>
+            }
+
+
+            <label>Dokumenti</label>
+            <input class="form-control" placeholder="Dokumenti" name="dokumenti" value="@setting.DokumentiTekst">
+            @if (setting.DokumentiIsActive == true)
+            {
+                <p>
+                    <input type="checkbox" checked name="dokumentiisActive"> <b>Aktivno</b>
+                </p>
+            }
+            else
+            {
+                <p>
+                    <input type="checkbox" name="dokumentiisActive"> <b>Aktiviraj</b>
+                </p>
+            }
+
+            <label>Nostrifikacija</label>
+            <input class="form-control" placeholder="Nostrifikacija" name="nostrifikacija" value="@setting.NostrifikacijaTekst">
+            @if (setting.NostrifikacijaIsActive == true)
+            {
+                <p>
+                    <input type="checkbox" checked name="nostrifikacijaisActive"> <b>Aktivno</b>
+                </p>
+            }
+            else
+            {
+                <p>
+                    <input type="checkbox" name="nostrifikacijaisActive"> <b>Aktiviraj</b>
+                </p>
+            }
+
+            <label>Pitanja i odgovori</label>
+            <input class="form-control" placeholder="PitanjaOdgovori" name="pitanjaOdgovori" value="@setting.PitanjaOdgovoriTekst">
+            @if (setting.PitanjaOdgovoriIsActive == true)
+            {
+                <p>
+                    <input type="checkbox" checked name="pitanjaOdgovoriisActive"> <b>Aktivno</b>
+                </p>
+            }
+            else
+            {
+                <p>
+                    <input type="checkbox" name="pitanjaOdgovoriisActive"> <b>Aktiviraj</b>
+                </p>
+            }
+
+            <label>Linkovi</label>
+            <input class="form-control" placeholder="Linkovi" name="linkovi" value="@setting.LinkoviTekst">
+            @if (setting.LinkoviIsActive == true)
+            {
+                <p>
+                    <input type="checkbox" checked name="linkoviisActive"> <b>Aktivno</b>
+                </p>
+            }
+            else
+            {
+                <p>
+                    <input type="checkbox" name="linkoviisActive"> <b>Aktiviraj</b>
+                </p>
+            }
+
+            <label>Studentski zajmovi</label>
+            <input class="form-control" placeholder="StudentskiZajmovi" name="zajmovi" value="@setting.ZajmoviTekst">
+            @if (setting.ZajmoviIsActive == true)
+            {
+                <p>
+                    <input type="checkbox" checked name="zajmoviisActive"> <b>Aktivno</b>
+                </p>
+            }
+            else
+            {
+                <p>
+                    <input type="checkbox" name="zajmoviisActive"> <b>Aktiviraj</b>
+                </p>
+            }
+
+            <label>Registar</label>
+            <input class="form-control" placeholder="Registar" name="registar" value="@setting.RegistarTekst">
+            @if (setting.RegistarIsActive == true)
+            {
+                <p>
+                    <input type="checkbox" checked name="registarisActive"> <b>Aktivno</b>
+                </p>
+            }
+            else
+            {
+                <p>
+                    <input type="checkbox" name="registarisActive"> <b>Aktiviraj</b>
+                </p>
+            }
+            <br />
+            <input type="submit" value="Snimi" class="btn btn-primary" />
+        </div>
+    </div>
+
+
+
+
+
+
+
+            <div class="clearfix"></div>
+</form>

@@ -1,0 +1,117 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Pregled";
+    Layout = "~/Views/Shared/_Public.cshtml";
+
+    Obavijesti obavijest = (Obavijesti)ViewData["obavijest"];
+    Context ctx = new Context();
+}
+
+<link href="~/Content/JS/lightbox/css/lightbox.css" rel="stylesheet" />
+
+<script src="~/Content/JS/lightbox/js/lightbox.js"></script>
+@if (obavijest != null)
+{
+    <div class="straniceBody">
+        <h3 class="foontFMON">@obavijest.NaslovObavijesti</h3>
+        <small>Datum obavijesti: @obavijest.Datum.ToString("dd/MM/yyyy")</small>
+        <br />
+        <br />
+        @if (obavijest.SlikaObavijesti != "")
+        {
+            <img src="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,obavijest.SlikaObavijesti)" class="slikaObavijesti" />
+            <br /><br />
+        }
+
+        @Html.Raw(obavijest.Sazetak)
+        <br />
+        @Html.Raw(obavijest.Obavijest)
+
+        @{
+        List<ObavijestiSlike> slike = ctx.ObavijestiSlikes.Where(x => x.ObavijestID == obavijest.ObavijestID).ToList();
+        if (slike.Count() > 0)
+        {
+            <h3 class="fmonFontColor">Galerija</h3>
+            
+                <div class="slikeGalerija">
+                    @foreach (ObavijestiSlike item in slike)
+                    {
+                     <div >                                             
+                         <a  href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,item.Putanja)" data-lightbox="example-set" data-title="Click the right half of the image to move forward." >
+                             <img class="slikeBox" src="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,item.Putanja)" alt="" />
+                         </a>                   
+                        </div>                      
+                    }
+                </div>
+           
+        }
+
+        }
+
+
+
+        @{
+        List<ObavijestiDokumenti> dokumenti = ctx.ObavijestiDokumentis.Where(x => x.ObavjestID == obavijest.ObavijestID).ToList();
+
+        if (dokumenti.Count() > 0)
+        {
+            <h3 class="fmonFontColor">Dokumenti</h3>
+            foreach (ObavijestiDokumenti item in dokumenti)
+            {
+                if (item.TipDokumenta == ".rar")
+                {
+                    <p>Naziv dokumenta: @item.NazivDokumenta</p>
+                    <a href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,item.Lokacija)">
+                        <img src="~/Content/Icon/rar.png" />
+                    </a>
+                    <br />
+                }
+                if (item.TipDokumenta == ".doc" || item.TipDokumenta == ".docx")
+                {
+                    <p>Naziv dokumenta: @item.NazivDokumenta</p>
+                    <a href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,item.Lokacija)">
+                        <img src="~/Content/Icon/doc.png" />
+                    </a>
+                    <br />
+                }
+                if (item.TipDokumenta == ".zip")
+                {
+                    <p>Naziv dokumenta: @item.NazivDokumenta</p>
+                    <a href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,item.Lokacija)">
+                        <img src="~/Content/Icon/zip.png" />
+                    </a>
+                    <br />
+
+                }
+                if (item.TipDokumenta == ".xls" || item.TipDokumenta == ".xlsx")
+                {
+                    <p>Naziv dokumenta: @item.NazivDokumenta</p>
+                    <a href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,item.Lokacija)">
+                        <img src="~/Content/Icon/xls.png" />
+                    </a>
+                    <br />
+
+                }
+                if (item.TipDokumenta == ".ppt" || item.TipDokumenta == ".pptx")
+                {
+                    <p>Naziv dokumenta: @item.NazivDokumenta</p>
+                    <a href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,item.Lokacija)">
+                        <img src="~/Content/Icon/ppt.png" />
+                    </a>
+                    <br />
+
+                }
+                if (item.TipDokumenta == ".pdf")
+                {
+                    <p>Naziv dokumenta: @item.NazivDokumenta</p>
+                    <a href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,item.Lokacija)">
+                        <img src="~/Content/Icon/pdf.png" />
+                    </a>
+                    <br />
+                }
+            }
+        }
+        }
+
+    </div>
+}

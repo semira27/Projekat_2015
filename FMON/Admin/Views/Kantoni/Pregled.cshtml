@@ -1,0 +1,27 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Pregled";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<Gradovi> kantoni = (List<Gradovi>)ViewData["kantoni"];
+}
+
+<table id="table" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Gradovi i in kantoni)
+        {
+            <tr>
+                <td>@i.Naziv</td>
+                <td>
+                    <a href="/Kantoni/Izmjena?Id=@i.GradID" class="btn btn-success"> Izmijeni</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

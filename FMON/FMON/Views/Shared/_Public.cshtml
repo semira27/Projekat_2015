@@ -1,0 +1,211 @@
+﻿@using Data.Model;
+@{
+    Layout = null; 
+    
+    Context ctx = new Context();
+    Postavke p = ctx.Postavkes.FirstOrDefault();
+}
+
+
+
+ 
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FMON</title>
+
+    <script src="~/Content/JS/js/jquery-1.10.2.min.js"></script>
+
+    <link href="~/Content/CSS/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/CSS/color-blue.css" rel="stylesheet" />
+    <link href="~/Content/CSS/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/CSS/style.css" rel="stylesheet" />
+    <link href="~/Content/CSS/width-full.css" rel="stylesheet" />
+    <link href="~/Content/CSS/fmon.css" rel="stylesheet" />
+    <link href="~/Content/JS/glDatePicker/styles/glDatePicker.flatwhite.css" rel="stylesheet" />
+
+    <script src="~/Content/JS/glDatePicker/glDatePicker.min.js"></script>
+
+
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script>
+        var myCenter = new google.maps.LatLng(43.347810, 17.807639);
+  
+        function initialize() {
+            var mapProp = {
+                center: myCenter,
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.SATELLITE
+            };
+
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+            var marker = new google.maps.Marker({
+                position: myCenter,
+            });
+
+            marker.setMap(map);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+<body class="noPadingMargin">
+    <div class="boxed">
+        <aside class="topPanel">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-xs-12 col-md-3">
+                        <div class="input-group">
+                            <form method="post" action="/Pretraga/Index" class="form-inline">
+
+                                <div class="input-group" >
+                                    <input type="text" placeholder="Search..." name="pitanje" class="form-control searchBox">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary searchBoxButton" type="submit"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div><!-- /input-group -->
+                            </form>
+                        </div><!-- /input-group -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </aside>
+        <!--search box-->
+        <header id="header" class="hidden-xs headerLogo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 md12NopaddingLeft">                    
+                        <a href="/Index/Index">
+                            <div class="fmonLogo"></div>
+                        </a>
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+
+        </header> <!-- header -->
+
+        <nav class="navbar navbar-static-top navbar-mind fmonBackColor" role="navigation">
+            <div class="container ">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs lowRezfont" href="/Index/Index">FMON</a>
+
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-mind-collapse">
+                        <span class="sr-only">Navigacija</span>
+                        <i class="fa fa-bars fa-inverse"></i>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-mind-collapse ">
+                    <ul class="nav navbar-nav ">
+                    @if (p.NaslovnaIsActive == true) 
+                    { 
+                        <li class="dropdown">
+                            <a href="/Index/Index" class="dropdown-toggle fontNaslovnaTraka">@p.NaslovnaTekst</a>
+                        </li>
+                    }
+                    @if (p.DokumentiIsActive == true) 
+                    {
+                        <li class="dropdown">
+                            <a href="/Dokument/Index" class="dropdown-toggle fontNaslovnaTraka">@p.DokumentiTekst</a>
+                        </li>  
+                    }  
+                    @if(p.NostrifikacijaIsActive==true)
+                    {            
+                        <li class="dropdown">
+                            <a href="/Nostrifikacija/Index" class="dropdown-toggle fontNaslovnaTraka">@p.NostrifikacijaTekst</a>
+                        </li>
+                    } 
+                    @if(p.PitanjaOdgovoriIsActive==true)
+                    { 
+                        <li class="dropdown">
+                            <a href="/Pitanja/Index" class="dropdown-toggle fontNaslovnaTraka">@p.PitanjaOdgovoriTekst</a>
+                        </li>
+                    }
+                    @if (p.LinkoviIsActive==true) 
+                    { 
+                        <li class="dropdown">
+                            <a href="/Link/Index" class="dropdown-toggle fontNaslovnaTraka">@p.LinkoviTekst</a>
+                        </li>
+                    }
+                    @if (p.ZajmoviIsActive == true) 
+                    { 
+                        <li class="dropdown">
+                            <a href="/Zajmovi/Index" class="dropdown-toggle ">@p.ZajmoviTekst</a>
+                        </li>
+                    }
+                    @if(p.RegistarIsActive==true)
+                    { 
+                          <li class="dropdown">
+                              <a href="/RegistarP/Index" class="dropdown-toggle fontNaslovnaTraka">@p.RegistarTekst</a>
+                        </li>
+                    }
+                    </ul> <!-- nav nabvar-nav -->
+                </div><!-- navbar-collapse -->
+            </div> <!-- container -->
+        </nav> <!-- navbar navbar-default -->
+
+        <div class="container containerPadding">
+
+            <div class="row">
+                <div class="col-xs-12 col-md-3 " style="padding:5px 5px 5px 0px;">
+                    <!---sektori-->
+                    @Html.Partial("_Sektori")
+                    <!---sektori-->
+                    <!---mapa institucija-->
+                    @Html.Partial("_MapaInstitucija")
+                    <!---- mapa institucija-->
+                    <!---video-->
+                    @Html.Partial("_Video")
+                    <!---video-->
+                </div>
+                <div class="col-xs-12 col-md-6 " style="padding:5px 0px;">
+                    @RenderBody()
+                </div>
+                <div class="col-xs-12 col-md-3" style="padding:5px 0px 5px 5px;">
+                    <!---Kalendar-->
+                    @Html.Partial("_Calendar")
+                    <!---- Kalendar-->
+                    <!---najave-->
+                    @Html.Partial("_Najave")
+                    <!---najave-->
+                    <!---anketa-->
+                    @Html.Partial("_Anketa")
+                    <!---anketa-->
+                </div>
+            </div>
+
+        </div>
+
+    </div> <!-- container -->
+
+    <footer id="footer">
+        <p>&copy; @DateTime.Now.Year Federalno ministarstvo obrazovanja i nauke. Sva prava pridržana. Powered by <a href="http://www.fit.ba">FIT Mostar</a> @Html.Partial("_Social")</p>
+    </footer>
+
+    <div id="back-top">
+        <a href="#header"><i class="fa fa-chevron-up"></i></a>
+    </div>
+
+    <script src="~/Content/JS/js/app.js"></script>
+    <script src="~/Content/JS/js/bootstrap.js"></script>
+    <script src="~/Content/JS/js/bootstrap.min.js"></script>
+    <script src="~/Content/JS/js/holder.js"></script>
+    <script src="~/Content/JS/js/html5shiv.js"></script>
+    <script src="~/Content/JS/js/jquery.cookie.js"></script>
+    <script src="~/Content/JS/js/jquery.countdown.js"></script>
+    <script src="~/Content/JS/js/jquery.countdown.min.js"></script>
+    <script src="~/Content/JS/js/jquery.mixitup.min.js"></script>
+    <script src="~/Content/JS/js/modernizr.custom.js"></script>
+    <script src="~/Content/JS/js/respond.min.js"></script>
+    <script src="~/Content/JS/js/styleswitcher.js"></script>
+
+
+</body>
+</html>

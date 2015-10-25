@@ -1,0 +1,21 @@
+﻿@using Data.Model;
+@{
+
+    Context ctx = new Context();
+
+}
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+
+@foreach (Sektori i in ctx.Sektoris.Where(x => x.IsActive == true && x.IsStudentskiZajam == false).OrderBy(x => x.Redoslijed).ToList())
+{
+    <div class="panel panel-primary noPaddingPanelPrimary">
+        <div class="panel-body sektoriPanelPadding">
+            <a href="/Sektor/Index/@i.SektorID" class="">
+                <div style="background:#152D53 url(@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,i.IkonaSektora)); background-repeat: no-repeat; background-size: 100%;" class="icon-box sektori sektorBox">
+                    <h4 class="tekstSektori">@i.NazivSektora</h4>
+                </div>
+            </a>
+        </div>
+    </div>
+}
+

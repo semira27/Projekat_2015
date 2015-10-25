@@ -1,0 +1,21 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Public.cshtml";
+
+    List<RegistarNostrifikacija> nostrifikacije = (List<RegistarNostrifikacija>)ViewData["nostrifikacije"];
+}
+@if (nostrifikacije != null)
+{
+    <div class="straniceBody">
+        <h2 class="fmonFontColor"><b>Priznavanje diploma</b></h2>
+        <br />
+        @foreach (var item in nostrifikacije)
+        {
+            <a class="fmonFontColor" href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,item.Lokacija)" target="_blank">@item.Naziv</a>
+            <br/>
+      <br />
+        }
+
+        </div>
+}

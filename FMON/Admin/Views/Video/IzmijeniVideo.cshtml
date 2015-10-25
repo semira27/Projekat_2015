@@ -1,0 +1,40 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "IzmijeniVideo";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<VideoMaterijali> materijali = (List<VideoMaterijali>)ViewData["videoZapisi"];
+}
+<link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataTable/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#video').DataTable();
+    });
+</script>
+
+<table id="video" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Link</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (VideoMaterijali i in materijali)
+        {
+            <tr>
+                <td>@i.Naziv</td>
+                <td>@i.Link</td>
+                <td>
+                    <a href="/Video/Izmjena?Id=@i.VideoMaterijaliID" class="btn btn-success"> Izmijeni</a>
+                    <a href="/Video/BrisanjeVideo?Id=@i.VideoMaterijaliID" class="btn btn-danger"> Obrisi</a>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

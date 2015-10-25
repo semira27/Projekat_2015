@@ -1,0 +1,29 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Public.cshtml";
+    Context ctx = new Context();
+    List<Gradovi> gradovi = (List<Gradovi>)ViewData["gradovi"];
+}
+
+
+<div class="straniceBody">
+    <h3 class="foontFMON">Linkovi</h3>
+    <br/>
+    @if (gradovi.Count() > 0 != null)
+    {
+        foreach (Gradovi item in gradovi)
+        {            
+                List<InstitucijaLinkovi> list = ctx.InstitucijaLinkovis.Where(x => x.GradID == item.GradID).ToList();
+
+                if (list != null)
+                {
+
+                    foreach (InstitucijaLinkovi i in list)
+	                {
+                        <p class="media-heading naslovNovosti"><a href="@i.Link" class="linkObavijesti">@i.NazivLinka</a></p>
+	                }
+                }                
+        }
+    }
+</div>

@@ -1,0 +1,42 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "SviKorisnici";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<Korisnici> korisnici = (List<Korisnici>)ViewData["korisnici"];
+}
+<link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataTable/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#korisnici').DataTable();
+    });
+</script>
+
+<table id="korisnici" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>E-mail</th>
+            <th>Korisničko ime</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Korisnici i in korisnici)
+        {
+            <tr>
+                <td>@i.Ime</td>
+                <td>@i.Prezime</td>
+                <td>@i.Email</td>
+                <td>@i.KorisnickoIme</td>
+                <td>
+                    <a href="/User/IzmjenaKorisnika?Id=@i.KorisnikID" class="btn btn-success"> Izmijeni</a>
+                    <a href="/User/BrisanjeKorisnika?Id=@i.KorisnikID" class="btn btn-danger"> Obriši</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

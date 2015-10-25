@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMON", "FMON\FMON.csproj", "{F5B13ACF-722E-4DE6-B922-3BCE27AE0E8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin", "Admin\Admin.csproj", "{BD06AA8B-4F24-4226-9FA2-AA9E85FC70FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{2481460E-3063-4230-ABE3-E72B6700E46E}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://sudic.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = FMON\\FMON.csproj
+		SccProjectName1 = FMON
+		SccLocalPath1 = FMON
+		SccProjectUniqueName2 = Admin\\Admin.csproj
+		SccProjectName2 = Admin
+		SccLocalPath2 = Admin
+		SccProjectUniqueName3 = Data\\Data.csproj
+		SccProjectName3 = Data
+		SccLocalPath3 = Data
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5B13ACF-722E-4DE6-B922-3BCE27AE0E8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5B13ACF-722E-4DE6-B922-3BCE27AE0E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5B13ACF-722E-4DE6-B922-3BCE27AE0E8C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F5B13ACF-722E-4DE6-B922-3BCE27AE0E8C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F5B13ACF-722E-4DE6-B922-3BCE27AE0E8C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F5B13ACF-722E-4DE6-B922-3BCE27AE0E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5B13ACF-722E-4DE6-B922-3BCE27AE0E8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5B13ACF-722E-4DE6-B922-3BCE27AE0E8C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F5B13ACF-722E-4DE6-B922-3BCE27AE0E8C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F5B13ACF-722E-4DE6-B922-3BCE27AE0E8C}.Release|x86.ActiveCfg = Release|Any CPU
+		{BD06AA8B-4F24-4226-9FA2-AA9E85FC70FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD06AA8B-4F24-4226-9FA2-AA9E85FC70FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD06AA8B-4F24-4226-9FA2-AA9E85FC70FC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BD06AA8B-4F24-4226-9FA2-AA9E85FC70FC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BD06AA8B-4F24-4226-9FA2-AA9E85FC70FC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BD06AA8B-4F24-4226-9FA2-AA9E85FC70FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD06AA8B-4F24-4226-9FA2-AA9E85FC70FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD06AA8B-4F24-4226-9FA2-AA9E85FC70FC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BD06AA8B-4F24-4226-9FA2-AA9E85FC70FC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BD06AA8B-4F24-4226-9FA2-AA9E85FC70FC}.Release|x86.ActiveCfg = Release|Any CPU
+		{2481460E-3063-4230-ABE3-E72B6700E46E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2481460E-3063-4230-ABE3-E72B6700E46E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2481460E-3063-4230-ABE3-E72B6700E46E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2481460E-3063-4230-ABE3-E72B6700E46E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2481460E-3063-4230-ABE3-E72B6700E46E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2481460E-3063-4230-ABE3-E72B6700E46E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2481460E-3063-4230-ABE3-E72B6700E46E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2481460E-3063-4230-ABE3-E72B6700E46E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2481460E-3063-4230-ABE3-E72B6700E46E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2481460E-3063-4230-ABE3-E72B6700E46E}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

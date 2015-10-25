@@ -1,0 +1,57 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Pregled";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<Anketa> anekte = (List<Anketa>)ViewData["Ankete"];
+}
+
+<link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataTable/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#anketa').DataTable();
+    });
+</script>
+
+<table id="anketa" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Status</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (anekte.Count() > 0)
+        {
+            foreach (Anketa i in anekte)
+            {
+                <tr>
+                    <td>@i.Pitanje</td>
+                    @if (i.IsActive == true)
+                    {
+                       <td>
+                           <span class="btn bg-success">Aktivna</span>
+                       </td>
+
+                    }
+                    else
+                    {
+                        <td>
+                            <span class="btn bt-success">Nije aktivna</span>
+                        </td>
+                    }
+                   
+                    <td>
+                        <a href="/Ankete/Izmjeni?Id=@i.AnketaID" class="btn btn-success">Uredi</a>
+                        <a href="/Ankete/Brisi?Id=@i.AnketaID" class="btn btn-info">Izmjeni status</a>
+
+                    </td>
+                </tr>
+            }
+        }
+
+
+    </tbody>
+</table>

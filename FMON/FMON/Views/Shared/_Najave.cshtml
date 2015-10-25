@@ -1,0 +1,22 @@
+﻿@using Data.Model;
+@{
+
+    Context ctx = new Context();
+
+}
+<div class="panel panel-primary noPaddingPanelPrimary">
+    <div class="panel-heading panelHeading">Najave događaja</div>
+    <div class="panel-body BodyPadding">
+        <ul class="media-list">
+            @foreach (Najave i in ctx.Najaves.Where(x => x.IsActive == true).OrderBy(x => x.NajavaID).Take(5).ToList())
+            {
+                <li>
+                    <div class="media-body">
+                        <span class="label label-primary najavaDatum">@i.Datum.ToString("dd/MM/yyyy u HH:mm") h</span>
+                        <p class="media-heading"><a href="/Najava/Vijest/@i.NajavaID" class="fmonFontColor">@i.Sazetak</a></p>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

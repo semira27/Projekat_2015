@@ -1,0 +1,74 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "IzmjenaKalendara";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    KalendarObavijesti k = (KalendarObavijesti)ViewData["kalendar"];
+}
+<link href="~/Content/datepicker/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/datepicker/jquery.datetimepicker.js"></script>
+
+<link href="~/Content/datepicker/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/datepicker/jquery.datetimepicker.js"></script>
+<script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#datetimepicker_mask').datetimepicker({
+            format: 'd.m.Y'
+        });
+    });
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    });
+</script>
+
+
+<form method="post">
+    <div class="col-lg-6">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>Izmjena obavijesti u kalendaru</h4>
+                <input type="hidden" name="kalendarID" value="@k.KalendarID" />
+                <div class="form-group">
+                    <label>Naslov</label>
+                    <input class="form-control" placeholder="@k.Naslov" name="naslov">
+                </div>
+                <div class="form-group">
+                    <label>Obavijest</label>
+                    <textarea class="form-control" rows="3" name="obavijest">@k.Obavijest</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Datum</label>
+                    <input class="form-control" id="datetimepicker_mask" value="@k.Datum.ToString("dd/M/yyyy")" name="datum" rea>
+                </div>
+                <div class="form-group">
+
+                    <input type="submit" value="Snimi" class="btn btn-primary" />
+                </div>
+                </div>
+        </div>
+        <a href="/Kalendar/Pregled" class="btn btn-info"> Nazad</a>
+    </div>
+</form>

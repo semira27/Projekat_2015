@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<link href="~/Content/datepicker/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/datepicker/jquery.datetimepicker.js"></script>
+<script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
+
+<script>
+    $(document).ready(function () {      
+        $('#datetimepicker_mask').datetimepicker({
+            mask: '9999/19/39 29:59',
+            format: 'd.m.Y H:i'
+        });
+    });
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    });
+</script>
+
+
+<form method="post" action="/Najave/InsertNajave">
+    <div class="col-lg-6">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Dodavanje nove najave za medije</h3>
+                <br />
+                <label for="datum">Izaberite datum i vrijeme najave za medije</label>
+                <input id="datetimepicker_mask" class="form-control" name="datum" />
+                <br />
+                <label for="disabledSelect">Kratak sadržaj</label>
+                <input class="form-control" name="sazetak" placeholder="Unesite kratak sadržaj najave">
+                <br />
+                <label for="disabledSelect">Sadržaj</label>
+                <textarea class="form-control" rows="3" name="sadrzaj" placeholder="Unesite sadržaj najajve za medij"></textarea>
+                <br />
+                <button type="submit" class="btn btn-primary">Snimi</button>
+
+            </div>
+        </div>
+    </div>
+</form>

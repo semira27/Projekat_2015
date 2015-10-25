@@ -1,0 +1,78 @@
+﻿@using Data.Model;
+@{
+
+    Context ctx = new Context();
+    List<Gradovi> gradovi = ctx.Gradovis.Where(x => x.IsGeneralno == false).ToList();
+}
+
+<div class="panel panel-primary noPaddingPanelPrimary">
+    <div class="panel-heading panelHeading">MAPA USTANOVA/INSTITUCIJA</div>
+    <div class="panel-body MapaInstitucijaBody">
+        <div class="imageMap" aria-haspopup="true">
+            <div class="hotspots">
+                @for (int i = 0; i < gradovi.Count; i++)
+                {
+                    if (gradovi[i].GradID == 6)
+                    {
+                        <div>
+                            <a href="/Link/Institucije/6" class="p1" rel="nofollow" data-tooltip="@gradovi[i].Naziv"></a>  <!---unsko sanski-->
+                        </div>
+                    }
+                    if (gradovi[i].GradID == 7)
+                    {
+                        <div>
+                            <a href="/Link/Institucije/7" class="p2" rel="nofollow" data-tooltip="@gradovi[i].Naziv"></a>  <!---posavski-->
+                        </div>
+                    }
+                    if (gradovi[i].GradID == 8)
+                    {
+                        <div>
+                            <a href="/Link/Institucije/8" class="p3" rel="nofollow" data-tooltip="@gradovi[i].Naziv"></a>  <!---tuzlanski-->
+                        </div>
+                    }
+                    if (gradovi[i].GradID == 9)
+                    {
+                        <div>
+                            <a href="/Link/Institucije/9" class="p4" rel="nofollow" data-tooltip="@gradovi[i].Naziv"></a>  <!---zenicko dobojski-->
+                        </div>
+                    }
+                    if (gradovi[i].GradID == 10)
+                    {
+                        <div>
+                            <a href="/Link/Institucije/10" class="p5" rel="nofollow" data-tooltip="@gradovi[i].Naziv"></a>  <!---bosansko podrinjski-->
+                        </div>
+                    }
+                    if (gradovi[i].GradID == 11)
+                    {
+                        <div>
+                            <a href="/Link/Institucije/11" class="p6" rel="nofollow" data-tooltip="@gradovi[i].Naziv"></a>  <!---srednjobosanski-->
+                        </div>
+                    }
+                    if (gradovi[i].GradID == 12)
+                    {
+                        <div>
+                            <a href="/Link/Institucije/12" class="p7" rel="nofollow" data-tooltip="@gradovi[i].Naziv"></a>  <!---hercegovačko neretvanski-->
+                        </div>
+                    }
+                    if (gradovi[i].GradID == 13)
+                    {
+                        <div>
+                            <a href="/Link/Institucije/13" class="p8" rel="nofollow" data-tooltip="@gradovi[i].Naziv"></a>  <!---zapadnohercegovački -->
+                        </div>
+                    }
+                    if (gradovi[i].GradID == 14)
+                    {
+                        <div>
+                            <a href="/Link/Institucije/14" class="p9" rel="nofollow" data-tooltip="@gradovi[i].Naziv"></a>  <!---sarajevski -->
+                        </div>}
+                    if (gradovi[i].GradID == 15)
+                    {
+                        <div>
+                            <a href="/Link/Institucije/15" class="p10" rel="nofollow" data-tooltip="@gradovi[i].Naziv"></a>  <!---livno-->
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

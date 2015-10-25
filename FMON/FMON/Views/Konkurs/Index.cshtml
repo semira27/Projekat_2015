@@ -1,0 +1,83 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Public.cshtml";
+    Context ctx = new Context();
+}
+@model Data.Model.Konkursi
+
+<div class="straniceBody">
+
+    @if (Model != null)
+    {
+
+
+        <h3 class="foontFMON">@Model.Naziv</h3>
+        <small>Datum objave konkursa: @Model.Datum.ToString("dd/MM/yyyy")</small>
+        <br />
+        <br />
+        @Html.Raw(Model.Obavijest)
+        <br />
+
+        List<KonkursiDokumenti> dokumenti = ctx.KonkursiDokumentis.Where(x => x.KonkursID == Model.KonkursID).ToList();
+        if (dokumenti.Count() > 0)
+        {
+            <h3 class="fmonFontColor">Dokumenti</h3>
+            foreach (KonkursiDokumenti item in dokumenti)
+            {
+                if (item.TipDokumenta == ".rar")
+                {
+                    <p>Naziv dokumenta: @item.Naziv</p>
+                    <a href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,item.Putanja)" target="_blank">
+                        <img src="~/Content/Icon/rar.png" />
+                    </a>
+                    <br />
+                }
+                if (item.TipDokumenta == ".doc" || item.TipDokumenta == ".docx")
+                {
+                    <p>Naziv dokumenta: @item.Naziv</p>
+                    <a href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite, item.Putanja)" target="_blank">
+                        <img src="~/Content/Icon/doc.png" />
+                    </a>
+                    <br />
+                }
+                if (item.TipDokumenta == ".zip")
+                {
+                    <p>Naziv dokumenta: @item.Naziv</p>
+                    <a href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite, item.Putanja)" target="_blank">
+                        <img src="~/Content/Icon/zip.png" />
+                    </a>
+                    <br />
+
+                }
+                if (item.TipDokumenta == ".xls" || item.TipDokumenta == ".xlsx")
+                {
+                    <p>Naziv dokumenta: @item.Naziv</p>
+                    <a href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite, item.Putanja)" target="_blank">
+                        <img src="~/Content/Icon/xls.png" />
+                    </a>
+                    <br />
+
+                }
+                if (item.TipDokumenta == ".ppt" || item.TipDokumenta == ".pptx")
+                {
+                    <p>Naziv dokumenta: @item.Naziv</p>
+                    <a href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite, item.Putanja)" target="_blank">
+                        <img src="~/Content/Icon/ppt.png" />
+                    </a>
+                    <br />
+
+                }
+                if (item.TipDokumenta == ".pdf")
+                {
+                    <p>Naziv dokumenta: @item.Naziv</p>
+                    <a href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite, item.Putanja)" target="_blank">
+                        <img src="~/Content/Icon/pdf.png" />
+                    </a>
+                    <br />
+                }
+            }
+        }
+
+    }
+</div>

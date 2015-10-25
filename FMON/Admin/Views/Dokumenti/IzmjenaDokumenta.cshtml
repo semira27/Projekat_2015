@@ -1,0 +1,70 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "IzmjenaDokumenta";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    Dokumenti dokument = (Dokumenti)ViewData["dokument"];
+    List<DokumentiKategorije> kategorije = (List<DokumentiKategorije>)ViewData["kategorije"];
+}
+
+<link href="~/Content/js/FileUpload/fileinput.css" rel="stylesheet" />
+<link href="~/Content/js/FileUpload/fileinput.min.css" rel="stylesheet" />
+<script src="~/Content/js/FileUpload/fileinput.js"></script>
+<script src="~/Content/js/FileUpload/fileinput.min.js"></script>
+<script src="~/Content/js/FileUpload/fileinput_locale_es.js"></script>
+
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="col-lg-8">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <input type="hidden" name="dokumentID" value="@dokument.DokumentID" />
+                <h3>Izmjena dokumenta</h3>
+                <br />
+
+                <select class="form-control" name="kategorijaId">
+                    @foreach (DokumentiKategorije i in kategorije)
+                    {
+                        if (dokument.DokumentKategorijaID == i.KategorijaDokumentaID)
+                        {
+                            <option value="@i.KategorijaDokumentaID" selected>@i.Naziv</option>
+                        }
+                        else
+                        {
+                            <option value="@i.KategorijaDokumentaID">@i.Naziv</option>
+                        }
+                    }
+
+
+                </select>
+                <br />
+                <label for="disabledSelect">Unesite naziv dokumenta</label>
+                <input class="form-control" name="naziv" placeholder="@dokument.Naziv">
+                <br />
+                <label for="disabledSelect">Postojeći dokument</label><br />
+                <span><a href="@dokument.Lokacija">@dokument.Naziv</a></span>
+                <br />
+
+                <label for="disabledSelect">Odaberite dokument</label>
+                <input id="file-0a" class="file" name="dokumenti" type="file" multiple data-min-file-count="0" />
+                <br>
+                <button type="submit" class="btn btn-primary">Snimi</button>
+            </div>
+        </div>
+        <a href="/Dokumenti/SviDokumenti" class="btn btn-info"> Nazad</a>
+    </div>
+</form>

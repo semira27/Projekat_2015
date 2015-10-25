@@ -1,0 +1,34 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Pregled";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<InstitucijaLinkovi> linkovi = (List<InstitucijaLinkovi>)ViewData["linkovi"];
+}
+
+<table class="table table-bordered table-hover" id="linkovi">
+    <thead>
+        <tr>
+
+            <th>Naziv</th>
+            <th>Link</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (InstitucijaLinkovi i in linkovi)
+        {
+            <tr>
+                <td>@i.NazivLinka</td>
+                <td>@i.Link</td>
+                <td>
+                    <a href="/Linkovi/IzmjenaLinka?Id=@i.LinkID" class="btn btn-success"> Izmijeni</a>
+                    <a href="/Linkovi/BrisanjeLinka?Id=@i.LinkID" class="btn btn-danger"> Obriši</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+

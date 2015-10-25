@@ -1,0 +1,22 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Institucije";
+    Layout = "~/Views/Shared/_Public.cshtml";
+    List<InstitucijaLinkovi> linkovi = (List<InstitucijaLinkovi>)ViewData["linkovi"];
+    Gradovi g = (Gradovi)ViewData["grad"];
+}
+
+<div class="straniceBody">  
+    @if (g != null)
+    {
+        <h3 class="foontFMON">Linkovi institucija iz: @g.Naziv</h3>
+    }
+    @if (linkovi.Count() > 0)
+    {      
+        foreach (InstitucijaLinkovi i in linkovi)
+        {
+            <p class="media-heading naslovNovosti"><a href="@i.Link" class="linkObavijesti">@i.NazivLinka</a></p>
+        }
+
+    }
+</div>

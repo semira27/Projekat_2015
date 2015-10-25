@@ -1,0 +1,72 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<DokumentiKategorije> kategorije = (List<DokumentiKategorije>)ViewData["Kategorije"];
+}
+
+<link href="~/Content/js/FileUpload/fileinput.css" rel="stylesheet" />
+<link href="~/Content/js/FileUpload/fileinput.min.css" rel="stylesheet" />
+<script src="~/Content/js/FileUpload/fileinput.js"></script>
+<script src="~/Content/js/FileUpload/fileinput.min.js"></script>
+<script src="~/Content/js/FileUpload/fileinput_locale_es.js"></script>
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        <button data-dismiss="alert" class="close" type="button">×</button>
+        <strong>Greška!</strong> @ViewBag.Error
+    </div>
+}
+@if (ViewBag.Success != null)
+{
+    <div class="alert alert-success">
+        <button data-dismiss="alert" class="close" type="button">×</button>
+        <strong>Obavljeno!</strong> @ViewBag.Success
+    </div>
+}
+<form method="post" action="/Dokumenti/SnimiKategoriju">
+    <div class="col-lg-8">
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Unos nove kategorije za dokumente</h3>
+                <label for="disabledSelect">Unesite naziv kategorije</label>
+                <input class="form-control" name="nazivKategorije">
+
+                <br />
+                <button type="submit" class="btn btn-primary">Snimi</button>
+                </div>
+            </div>
+        </div>
+</form>
+
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="col-lg-8">
+       
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <h3>Dodavanje novog dokumenta</h3>
+                <br />
+                
+                <select class="form-control" name="kategorijaId">
+                    @foreach (DokumentiKategorije i in kategorije)
+                    {
+                        <option value="@i.KategorijaDokumentaID">@i.Naziv</option>
+                    }                    
+                </select>
+                <br />
+                <label for="disabledSelect">Unesite naziv dokumenta</label>
+                <input class="form-control" name="naziv">
+                <br />
+                <label for="disabledSelect">Odaberite dokument</label>
+                <input id="file-0a" class="file" name="dokument" type="file" multiple data-min-file-count="1" />
+                <br>
+                <button type="submit" class="btn btn-primary">Snimi</button>
+
+            </div>
+        </div>
+    </div>
+</form>

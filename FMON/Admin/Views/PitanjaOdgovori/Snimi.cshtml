@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Snimi";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<link href="~/Content/datepicker/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/datepicker/jquery.datetimepicker.js"></script>
+<script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
+
+<script>
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    });
+</script>
+
+
+<form method="post">
+    <div class="col-lg-8">
+       @if (ViewBag.Error != null)
+       {
+        <div class="alert alert-danger">
+            <button data-dismiss="alert" class="close" type="button">×</button>
+            <strong>Greška!</strong> @ViewBag.Error
+        </div>
+       }
+    @if (ViewBag.Success != null)
+    {
+        <div class="alert alert-success">
+            <button data-dismiss="alert" class="close" type="button">×</button>
+            <strong>Obavljeno!</strong> @ViewBag.Success
+        </div>
+    }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Unesite često postavljeno pitanje i odgovor</h3>
+                <br/>
+                <label for="disabledSelect">Pitanje</label>
+                <input class="form-control" name="pitanje" placeholder="Pitanje...">
+                <br />
+                <label for="disabledSelect">Odgovor</label>
+                <textarea class="form-control" rows="3" name="odgovor"></textarea>
+                <br />
+                <button type="submit" class="btn btn-primary">Snimi</button>
+
+            </div>
+        </div>
+    </div>
+</form>

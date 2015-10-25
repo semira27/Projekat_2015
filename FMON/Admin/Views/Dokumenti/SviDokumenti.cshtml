@@ -1,0 +1,37 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "SviDokumenti";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<Dokumenti> dokumenti = (List<Dokumenti>)ViewData["dokumenti"];
+}
+<link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataTable/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable();
+    });
+</script>
+
+<table id="table" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Dokumenti i in dokumenti)
+        {
+            <tr>
+                <td>@i.Naziv</td>
+                <td>
+                    <a href="/Dokumenti/IzmjenaDokumenta?Id=@i.DokumentID" class="btn btn-success"> Izmijeni</a>
+                    <a href="/Dokumenti/ObrisiDokument?Id=@i.DokumentID" class="btn btn-danger"> Obriši</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

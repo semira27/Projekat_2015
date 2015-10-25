@@ -1,0 +1,55 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "SveNajave";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<Najave> najave = (List<Najave>)ViewData["najave"];
+}
+<link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataTable/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#najave').DataTable();
+    });
+</script>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        <button data-dismiss="alert" class="close" type="button">×</button>
+        <strong>Greška!</strong> @ViewBag.Error
+    </div>
+}
+@if (ViewBag.Success != null)
+{
+    <div class="alert alert-success">
+        <button data-dismiss="alert" class="close" type="button">×</button>
+        <strong>Obavljeno!</strong> @ViewBag.Success
+    </div>
+}
+
+<table class="table table-bordered table-hover" id="najave">
+    <thead>
+        <tr>
+            
+            <th>Kratak sadržaj</th>
+            <th>Datum najave</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Najave i in najave)
+        {
+            <tr>
+                <td>@i.Sazetak</td>
+                <td>@i.Datum</td>
+                <td>
+                    <a href="/Najave/IzmjenaNajave?Id=@i.NajavaID" class="btn btn-success"> Izmijeni</a>
+                    <a href="/Najave/BrisanjeNajave?Id=@i.NajavaID" class="btn btn-danger"> Obriši</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

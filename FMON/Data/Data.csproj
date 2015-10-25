@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2481460E-3063-4230-ABE3-E72B6700E46E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Data</RootNamespace>
+    <AssemblyName>Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\201506240628239_Tmp.cs" />
+    <Compile Include="Migrations\201506240628239_Tmp.Designer.cs">
+      <DependentUpon>201506240628239_Tmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506240633008_IsActiveZaVideoMat.cs" />
+    <Compile Include="Migrations\201506240633008_IsActiveZaVideoMat.Designer.cs">
+      <DependentUpon>201506240633008_IsActiveZaVideoMat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506251042466_Promjene.cs" />
+    <Compile Include="Migrations\201506251042466_Promjene.Designer.cs">
+      <DependentUpon>201506251042466_Promjene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506300711192_slike.cs" />
+    <Compile Include="Migrations\201506300711192_slike.Designer.cs">
+      <DependentUpon>201506300711192_slike.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506300740044_najva.cs" />
+    <Compile Include="Migrations\201506300740044_najva.Designer.cs">
+      <DependentUpon>201506300740044_najva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507010615256_zajam.cs" />
+    <Compile Include="Migrations\201507010615256_zajam.Designer.cs">
+      <DependentUpon>201507010615256_zajam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507010856488_linkovi.cs" />
+    <Compile Include="Migrations\201507010856488_linkovi.Designer.cs">
+      <DependentUpon>201507010856488_linkovi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507010901007_linkovi3.cs" />
+    <Compile Include="Migrations\201507010901007_linkovi3.Designer.cs">
+      <DependentUpon>201507010901007_linkovi3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507010926541_linkovia.cs" />
+    <Compile Include="Migrations\201507010926541_linkovia.Designer.cs">
+      <DependentUpon>201507010926541_linkovia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507011221354_linkovia2.cs" />
+    <Compile Include="Migrations\201507011221354_linkovia2.Designer.cs">
+      <DependentUpon>201507011221354_linkovia2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507011222317_linkovia3.cs" />
+    <Compile Include="Migrations\201507011222317_linkovia3.Designer.cs">
+      <DependentUpon>201507011222317_linkovia3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507031219487_grad.cs" />
+    <Compile Include="Migrations\201507031219487_grad.Designer.cs">
+      <DependentUpon>201507031219487_grad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507080834261_kalendar.cs" />
+    <Compile Include="Migrations\201507080834261_kalendar.Designer.cs">
+      <DependentUpon>201507080834261_kalendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507131130542_test2.cs" />
+    <Compile Include="Migrations\201507131130542_test2.Designer.cs">
+      <DependentUpon>201507131130542_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507150919119_test133423.cs" />
+    <Compile Include="Migrations\201507150919119_test133423.Designer.cs">
+      <DependentUpon>201507150919119_test133423.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509030722109_postavke.cs" />
+    <Compile Include="Migrations\201509030722109_postavke.Designer.cs">
+      <DependentUpon>201509030722109_postavke.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\Anketa.cs" />
+    <Compile Include="Model\AnketaOdgovor.cs" />
+    <Compile Include="Model\Context.cs" />
+    <Compile Include="Model\Dokumenti.cs" />
+    <Compile Include="Model\DokumentiKategorije.cs" />
+    <Compile Include="Model\Gradovi.cs" />
+    <Compile Include="Model\InstitucijaLinkovi.cs" />
+    <Compile Include="Model\KalendarObavijesti.cs" />
+    <Compile Include="Model\Konkursi.cs" />
+    <Compile Include="Model\KonkursiDokumenti.cs" />
+    <Compile Include="Model\Korisnici.cs" />
+    <Compile Include="Model\Najave.cs" />
+    <Compile Include="Model\Obavijesti.cs" />
+    <Compile Include="Model\ObavijestiDokumenti.cs" />
+    <Compile Include="Model\ObavijestiSektori.cs" />
+    <Compile Include="Model\ObavijestiSlike.cs" />
+    <Compile Include="Model\PitanjaOdgovori.cs" />
+    <Compile Include="Model\PostaviPitanje.cs" />
+    <Compile Include="Model\Postavke.cs" />
+    <Compile Include="Model\RegistarNostrifikacija.cs" />
+    <Compile Include="Model\Sektori.cs" />
+    <Compile Include="Model\VideoMaterijali.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201506240628239_Tmp.resx">
+      <DependentUpon>201506240628239_Tmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506240633008_IsActiveZaVideoMat.resx">
+      <DependentUpon>201506240633008_IsActiveZaVideoMat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506251042466_Promjene.resx">
+      <DependentUpon>201506251042466_Promjene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506300711192_slike.resx">
+      <DependentUpon>201506300711192_slike.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506300740044_najva.resx">
+      <DependentUpon>201506300740044_najva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507010615256_zajam.resx">
+      <DependentUpon>201507010615256_zajam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507010856488_linkovi.resx">
+      <DependentUpon>201507010856488_linkovi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507010901007_linkovi3.resx">
+      <DependentUpon>201507010901007_linkovi3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507010926541_linkovia.resx">
+      <DependentUpon>201507010926541_linkovia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507011221354_linkovia2.resx">
+      <DependentUpon>201507011221354_linkovia2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507011222317_linkovia3.resx">
+      <DependentUpon>201507011222317_linkovia3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507031219487_grad.resx">
+      <DependentUpon>201507031219487_grad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507080834261_kalendar.resx">
+      <DependentUpon>201507080834261_kalendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507131130542_test2.resx">
+      <DependentUpon>201507131130542_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507150919119_test133423.resx">
+      <DependentUpon>201507150919119_test133423.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509030722109_postavke.resx">
+      <DependentUpon>201509030722109_postavke.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

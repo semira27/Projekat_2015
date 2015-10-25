@@ -1,0 +1,38 @@
+﻿@using Data.Model;
+@{
+
+    Context ctx = new Context();
+
+    Anketa anketa = ctx.Anketas.Where(x => x.IsActive == true).FirstOrDefault();
+    List<AnketaOdgovor> odgovori = new List<AnketaOdgovor>();
+    if (anketa != null)
+    {
+        odgovori = ctx.AnketaOdgovors.Where(x => x.AnketaID == anketa.AnketaID && x.IsActive == true).ToList();
+    }
+}
+
+@if (anketa != null)
+{
+    <div class="panel panel-primary noPaddingPanelPrimary">
+        <div class="panel-heading panelHeading">Anketa</div>
+        <div class="panel-body BodyPadding">
+            <div class="anketaBox">
+                <h5 class="foontFMON"><b>@anketa.Pitanje</b></h5>
+                <form method="post" action="/Anketa/SnimiOdgovor">
+                    @foreach (var item in odgovori)
+                    {
+                        <div class="radio">
+                            <label><input type="radio" name="odgovor" value="@item.OdgovorID">@item.Naziv</label>
+                        </div>
+                    }
+                    <input type="submit" class="btn btn-default" value="Glasaj" />
+                    <a href="/Anketa/Chart/@anketa.AnketaID" class="fmonFontColor"> Rezultati</a>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+

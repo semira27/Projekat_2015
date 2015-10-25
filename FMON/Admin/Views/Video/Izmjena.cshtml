@@ -1,0 +1,46 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Izmjena";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    VideoMaterijali video = (VideoMaterijali)ViewData["Video"];
+}
+
+
+
+<form method="post" action="/Video/Izmjena">
+    <div class="col-lg-8">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Izmjena videa</h3>
+                <br />
+                <input type="hidden" value="@video.VideoMaterijaliID" name="VideoID" />
+                <div class="form-group">
+                    <label>Naziv</label>
+                    <input class="form-control" placeholder="@video.Naziv" name="naziv">
+                    <br />
+                    <label>Link</label>
+                    <input class="form-control" placeholder="@video.Link" name="link">
+                    <br />
+                    <input type="submit" value="Snimi" class="btn btn-primary" />
+
+                </div>
+            </div>
+            
+        </div>
+        <a href="/Video/IzmijeniVideo" class="btn btn-info"> Nazad</a>
+    </div>
+</form>

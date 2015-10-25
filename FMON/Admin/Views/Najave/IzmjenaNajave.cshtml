@@ -1,0 +1,67 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "IzmjenaNajave";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    Najave n = (Najave)ViewData["Najava"];
+}
+
+
+<link href="~/Content/datepicker/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/datepicker/jquery.datetimepicker.js"></script>
+<script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    });
+    $(document).ready(function () {
+        $('#datetimepicker_mask').datetimepicker({
+            format: 'd.m.Y H:i',
+        });
+    });
+</script>
+
+
+<form method="post" action="/Najave/IzmjenaNajave" enctype="multipart/form-data">
+
+    <div class="col-lg-6">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Izmjena najave za medije</h3>
+                <br />
+                <input type="hidden" value="@n.NajavaID" name="najavaID" />
+                <label for="datum">Izaberite datum i vrijeme najave za medij</label>
+                <input type="text" id="datetimepicker_mask" class="form-control" name="datum" value="@n.Datum" readonly/>
+                <br />
+                <label for="disabledSelect">Kratak sadržaj</label>
+                <input class="form-control" name="sazetak" placeholder="@n.Sazetak">
+                <br />
+                <label for="disabledSelect">Sadržaj</label>
+                <textarea class="form-control" rows="3" name="sadrzaj" placeholder="Unesite sadržaj najave za medij">@n.Vijest</textarea>
+                <br />
+                <button type="submit" class="btn btn-primary">Snimi</button>
+
+            </div>
+        </div>
+        <a href="/Najave/SveNajave" class="btn btn-info"> Nazad</a>
+    </div>
+</form>

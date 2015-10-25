@@ -1,0 +1,68 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "IzmjenaKorisnika";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    Korisnici k = (Korisnici)ViewData["korisnik"];
+}
+
+<form action="~/User/IzmjenaKorisnika" method="post">
+    <div class="col-lg-6">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Izmjena korisnika</h3>
+                <br />
+                <input type="hidden" value="@k.KorisnikID" name="korisnikID" />
+
+                <div class="form-group">
+                    <label>Ime</label>
+                    <input class="form-control" placeholder="@k.Ime" name="ime">
+                </div>
+
+                <div class="form-group">
+                    <label>Prezime</label>
+                    <input class="form-control" placeholder="@k.Prezime" name="prezime">
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" placeholder="@k.Email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label>Korisničko ime</label>
+                    <input class="form-control" placeholder="@k.KorisnickoIme" name="korisnickoIme">
+                </div>
+
+                <div class="form-group">
+                    <label>Lozinka</label>
+                    <input type="password" class="form-control" placeholder="Unesite lozinku" name="lozinka">
+                </div>
+                <div class="form-group">
+                    <label>Potvrdi lozinku</label>
+                    <input type="password" class="form-control" placeholder="Unesite lozinku" name="potvrda">
+                </div>
+
+
+                <div class="form-group col-md-12">
+                    <input type="submit" value="Snimi" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+        <a href="/User/SviKorisnici" class="btn btn-info"> Nazad</a>
+    </div>
+</form>
+

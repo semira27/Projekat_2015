@@ -1,0 +1,54 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "DodajLink";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<Gradovi> gradovi = (List<Gradovi>)ViewData["Gradovi"];
+}
+
+<form method="post">
+    <div class="col-lg-5">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Unesite novi link</h3>
+                <br />   
+                <br />
+                <label for="disabledSelect">Odaberite gdje link pripada</label>
+                @if (gradovi.Count() > 0)
+                {
+                    <select name="grad" class="form-control">
+
+                        @foreach (Gradovi item in gradovi)
+                        {
+                            <option value="@item.GradID">@item.Naziv</option>
+
+                        }
+                    </select>
+                }
+                <br /> 
+                <label for="disabledSelect">Naziv linka</label>
+                <input class="form-control" name="naziv" placeholder="Naziv">
+                <br />
+                <label for="disabledSelect">Link</label>
+                <input class="form-control" name="link" placeholder="link">
+                <br />
+                <br />
+                <button type="submit" class="btn btn-primary">Snimi</button>
+
+            </div>
+        </div>
+    </div>
+</form>

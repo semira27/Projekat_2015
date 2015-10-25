@@ -1,0 +1,21 @@
+﻿@using Data.Model;
+@{
+
+    Context ctx = new Context();
+    Postavke p = ctx.Postavkes.FirstOrDefault();
+}
+@if (p != null)
+{
+    if (p.LinkTwitter != "")
+    {
+        <a href="@p.LinkTwitter" class="social-icon iconTwitter" target="_blank"><i class="fa fa-twitter"></i></a>
+    }
+    if (p.LinkFacebook != "")
+    {
+        <a href="@p.LinkFacebook" class="social-icon iconFacebook" target="_blank"><i class="fa fa-facebook"></i></a>
+    }
+    if (p.LinkYoutube != "")
+    {
+        <a href="@p.LinkYoutube" class="social-icon iconYoutube" target="_blank"><i class="fa fa-youtube"></i></a>
+    }
+}

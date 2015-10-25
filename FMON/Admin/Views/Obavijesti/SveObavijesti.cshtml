@@ -1,0 +1,49 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "SveObavijesti";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<Obavijesti> obavijesti = (List<Obavijesti>)ViewData["obavijesti"];
+}
+
+<link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataTable/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable();
+    });
+</script>
+
+<table id="table" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Naslov</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Obavijesti i in obavijesti)
+        {
+            <tr>
+                <td>@i.Datum</td>
+                @if (@i.NaslovObavijesti.ToString().Length > 50)
+                {
+                    <td>@i.NaslovObavijesti.ToString().Substring(0, 50) ...</td>
+                }
+                else
+                {
+                    <td>
+                        @i.NaslovObavijesti
+                    </td>
+                }
+
+                <td>
+                    <a href="/Obavijesti/IzmjenaObavijesti?Id=@i.ObavijestID" class="btn btn-success"> Izmijeni</a>
+                    <a href="/Obavijesti/ObrisiObavijest?Id=@i.ObavijestID" class="btn btn-danger"> Obriši</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

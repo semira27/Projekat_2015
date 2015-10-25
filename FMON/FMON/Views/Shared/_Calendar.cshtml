@@ -1,0 +1,22 @@
+﻿@using Data.Model;
+@{
+
+
+}
+<link href="~/Content/JS/calendar/zabuto_calendar.css" rel="stylesheet" />
+
+<script src="~/Content/JS/calendar/zabuto_calendar.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $("#my-calendar").zabuto_calendar({ ajax: { url: "/Calendar/GetData2", modal: true } });
+    });
+</script>
+<div class="panel panel-primary noPaddingPanelPrimary" style="height:305px; ">
+    <div class="panel-heading panelHeading">Kalendar</div>
+    <div class="panel-body kalendarBody">
+        <div id="my-calendar" style="width:87%; margin-left:18px; "></div>
+    </div>
+</div>
+

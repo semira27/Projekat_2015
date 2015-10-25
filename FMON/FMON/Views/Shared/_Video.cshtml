@@ -1,0 +1,27 @@
+﻿@using Data.Model;
+@{
+
+    Context ctx = new Context();
+    List<VideoMaterijali> video = ctx.VideoMaterijalis.Where(x => x.IsActive == true).OrderByDescending(x => x.VideoMaterijaliID).Take(5).ToList();
+}
+<div class="panel panel-primary noPaddingPanelPrimary">
+    <div class="panel-heading panelHeading">Video</div>
+    <div class="panel-body BodyPadding videoBox">
+        @for (int i = 0; i < video.Count(); i++)
+        {
+            if (i == 0)
+            {
+                <iframe class="iFrameVideo" src="@video[i].Link.Replace("watch?v=", "embed/")" frameborder="0" allowfullscreen></iframe>
+            }
+            else
+            {
+                <div class="icon-box najavaBox">
+                    <i class="fa fa-video-camera najavaIcon"></i>
+                    <div class="icon-box-content najavaSadrzaj">
+                        <a href="@video[i].Link">@video[i].Naziv</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

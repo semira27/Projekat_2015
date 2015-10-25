@@ -1,0 +1,53 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<PostaviPitanje> pitanja = (List<PostaviPitanje>)ViewData["pitanja"];
+}
+
+<link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataTable/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#video').DataTable();
+    });
+</script>
+
+<table id="video" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Pitanje</th>
+            <th>Pregledano</th>
+            <th>Datum</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (PostaviPitanje i in pitanja)
+        {
+            <tr>
+                <td>@i.Pitanje</td>
+                @if (i.PitanjePregledano == true)
+                {
+                    <td><span class="btn btn-success">DA</span> </td>
+                }
+                else
+                {
+                    <td><span class="btn btn-danger">NE</span> </td>
+                }
+                <td><p>@i.Datum.ToString("dd-MM-yyyy HH:mm") h</p></td>
+                <td>
+                    
+                    <a href="/PostavljenaPitanja/Pregledaj/@i.PitanjeID" class="btn btn-success"> Pregledaj</a>
+                    <a href="/PostavljenaPitanja/Obrisi/@i.PitanjeID" class="btn btn-danger"> Obriši</a>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+

@@ -1,0 +1,96 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Dodaj obavijest";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<Sektori> sektori = (List<Sektori>)ViewData["sektori"];
+}
+
+
+<link href="~/Content/js/FileUpload/fileinput.css" rel="stylesheet" />
+<link href="~/Content/js/FileUpload/fileinput.min.css" rel="stylesheet" />
+<script src="~/Content/js/FileUpload/fileinput.js"></script>
+<script src="~/Content/js/FileUpload/fileinput.min.js"></script>
+<script src="~/Content/js/FileUpload/fileinput_locale_es.js"></script>
+
+<script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
+
+<script>
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    });
+</script>
+
+<form method="post" action="/Obavijesti/DodajObavijest" enctype="multipart/form-data">
+    <div class="col-lg-8">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Dodavanje nove obavijesti</h3>
+                <br />
+                <label for="disabledSelect">Unesite naslov obavijesti</label>
+                
+                <input class="form-control" name="naslov">
+                <br />
+
+                <label for="disabledSelect">Odaberite sektore kojma vijest pripada:</label>
+     
+                <br />
+                @if (sektori != null)
+                {
+                    foreach (Sektori item in sektori)
+                    {
+                        
+                       <p>
+                           <input type="checkbox" name="sektori" value="@item.SektorID" />
+                           <label>@item.NazivSektora</label>
+                       </p> 
+                    }
+                
+                }
+                <br />
+                <label for="disabledSelect">Unesite sažetak obavijesti</label>
+                <textarea class="form-control" rows="3" name="sazetak"></textarea>
+                <br />
+                <label for="disabledSelect">Unesite obavijest</label>
+                <textarea class="form-control" rows="3" name="obavijest"></textarea>
+                <br /> 
+                <input type="checkbox" name="IsStara" /> Stara obavijest?
+                <br />
+                <input type="checkbox" name="chkIsIstaknuta" /> Da li je obavijest istaknuta?
+                <br />     <br />  
+                <label for="disabledSelect">Odaberite sliku obavijesti (<span style="color:#ff6a00;">ukoliko je istaknuta, dimenzije slike 800 x 350 px</span>)</label>
+                <input id="file-0a" class="file" name="slikaObavijesti" type="file" multiple data-min-file-count="0"/>
+                <br/>
+                <hr/>
+                <br />
+                <label for="disabledSelect">Odaberite slike za galeriju u obavijesti</label>
+                <input id="file-0a" class="file" name="slike" type="file" multiple data-min-file-count="0" />
+                <br />
+                <br />
+                <label for="disabledSelect">Odaberite dokumente</label>
+                <input id="file-0a" class="file" name="dokumenti" type="file" multiple data-min-file-count="0" />
+                <br />
+                <button type="submit" class="btn btn-primary">Snimi</button>
+            </div>
+        </div>
+    </div>
+</form>

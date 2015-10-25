@@ -1,0 +1,167 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+
+    List<Obavijesti> obavijesti = (List<Obavijesti>)ViewData["LastFiveP"];
+    List<PostaviPitanje> pitanja = (List<PostaviPitanje>)ViewData["PostavljenaPitanja"];
+    List<Konkursi> konkursi = (List<Konkursi>)ViewData["Konkursi"];
+}
+
+
+<div class="col-lg-6">
+    <h3>Kratice</h3>
+
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/Obavijesti/DodajObavijest">Nova obavijest</a>
+                    </li>
+                    <li>
+                        <a href="/Dokumenti/Index">Novi dokument</a>
+                    </li>
+                    <li>
+                        <a href="/Konkursi/Snimi">Novi konkurs</a>
+                    </li>
+                    <li>
+                        <a href="/Najave/InsertNajave">Nova najava</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <br />
+
+    @if (obavijesti.Count() > 0)
+    {
+        <h4>Zadnjih 5 snimljenih obavijesti</h4>
+        <table id="obavijesti" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Naslov</th>
+                    <th>Akcija</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Obavijesti i in obavijesti)
+                {
+                    <tr>
+                        <td>@i.Datum</td>
+                        @if (@i.NaslovObavijesti.ToString().Length > 50)
+                        {
+                            <td>@i.NaslovObavijesti.ToString().Substring(0, 50) ...</td>
+                        }
+                        else
+                        {
+                            <td>
+                                @i.NaslovObavijesti
+                            </td>
+                        }
+
+                        <td>
+                            <a href="/Obavijesti/IzmjenaObavijesti?Id=@i.ObavijestID" class="btn btn-success"> Izmijeni</a>
+                            <a href="/Obavijesti/ObrisiObavijest?Id=@i.ObavijestID" class="btn btn-danger"> Obriši</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    <br />
+    @if (konkursi.Count() > 0)
+    {
+        <h4>Zadnjih 5 snimljenih konkursa</h4>
+        <table id="konkursi" class="table table-bordered table-hover">
+
+            <thead>
+                <tr>
+                    <th>Naziv</th>
+                    <th>Tip</th>
+                    <th>Akcija</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Konkursi i in konkursi)
+                {
+                    <tr>
+                        @if (i.Naziv.ToString().Length > 50)
+                        {
+                            <td>@i.Naziv.ToString().Substring(0, 50) ...</td>
+                        }
+                        else
+                        {
+                            <td>
+                                @i.Naziv
+                            </td>
+                        }
+
+
+                        @if (i.IsMedjunarodni)
+                        {
+                            <td>
+                                Međunarodni
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                Državni
+                            </td>
+                        }
+                        <td>
+                            <a href="/Konkursi/IzmjenaKonkursa?Id=@i.KonkursID" class="btn btn-success"> Izmijeni</a>
+                            <a href="/Konkursi/BrisanjeKonkursa?Id=@i.KonkursID" class="btn btn-danger"> Obriši</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+
+    <br />
+    @if (pitanja.Count() > 0)
+    {
+        <h4>Zadnjih 5 postavljenih pitanja od strane građana</h4>
+        <table id="pitanja" class="table table-bordered table-hover">
+
+            <thead>
+                <tr>
+                    <th>Pitanje</th>
+                    <th>Pregledano</th>
+                    <th>Datum</th>
+                    <th>Akcija</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (PostaviPitanje i in pitanja)
+                {
+                    <tr>
+                        <td>@i.Pitanje</td>
+                        @if (i.PitanjePregledano == true)
+                        {
+                            <td><span class="btn btn-success">DA</span> </td>
+                        }
+                        else
+                        {
+                            <td><span class="btn btn-danger">NE</span> </td>
+                        }
+                        <td><p>@i.Datum.ToString("dd-MM-yyyy HH:mm") h</p></td>
+                        <td>
+
+                            <a href="/PostavljenaPitanja/Pregledaj/@i.PitanjeID" class="btn btn-success"> Pregledaj</a>
+                            <a href="/PostavljenaPitanja/Obrisi/@i.PitanjeID" class="btn btn-danger"> Obriši</a>
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+</div>

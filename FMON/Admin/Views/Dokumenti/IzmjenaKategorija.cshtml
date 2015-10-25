@@ -1,0 +1,37 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    DokumentiKategorije kategorije = (DokumentiKategorije)ViewData["kategorija"];
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        <button data-dismiss="alert" class="close" type="button">×</button>
+        <strong>Greška!</strong> @ViewBag.Error
+    </div>
+}
+@if (ViewBag.Success != null)
+{
+    <div class="alert alert-success">
+        <button data-dismiss="alert" class="close" type="button">×</button>
+        <strong>Obavljeno!</strong> @ViewBag.Success
+    </div>
+}
+@if (kategorije != null)
+{
+    <form method="post">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Izmjena kategorije</h3>
+                    <label for="disabledSelect">Unesite naziv kategorije</label>
+                    <input class="form-control" name="naziv" value="@kategorije.Naziv">
+
+                    <br />
+                    <button type="submit" class="btn btn-primary">Snimi</button>
+                </div>
+            </div>
+        </div>
+    </form>}

@@ -1,0 +1,96 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "IzmjenaRegistra";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    RegistarNostrifikacija r = (RegistarNostrifikacija)ViewData["registar"];
+}
+<link href="~/Content/js/FileUpload/fileinput.css" rel="stylesheet" />
+<link href="~/Content/js/FileUpload/fileinput.min.css" rel="stylesheet" />
+<script src="~/Content/js/FileUpload/fileinput.js"></script>
+<script src="~/Content/js/FileUpload/fileinput.min.js"></script>
+<script src="~/Content/js/FileUpload/fileinput_locale_es.js"></script>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="col-lg-8">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Izmjena registra</h3>
+                <input type="hidden" name="registarID" value="@r.RegistarNostrifikacijaID" />
+                <br />
+                <label for="disabledSelect">Naziv</label>
+                <input class="form-control" name="naziv" placeholder="@r.Naziv">
+                <br />
+                <label for="disabledSelect">Postojeći dokument</label><br />
+                @if (r.Tip == ".rar")
+                {
+                    <a href="@r.Lokacija">
+                        <img src="~/Content/Icon/rar.png" />
+                    </a>
+                    <p>@r.Naziv</p>
+
+                    <br />
+                }
+                else if (r.Tip == ".doc" || r.Tip == ".docx")
+                {
+                    <a href="@r.Lokacija">
+                        <img src="~/Content/Icon/doc.png" />
+                    </a>
+                    <p>@r.Naziv</p>
+                    <br />
+                }
+                else if (r.Tip == ".zip")
+                {
+                    <a href="@r.Lokacija">
+                        <img src="~/Content/Icon/zip.png" />
+                    </a>
+                    <p>@r.Naziv</p>
+                    <br />
+                }
+                else if (r.Tip == ".xls" || r.Tip == ".xlsx")
+                {
+                    <a href="@r.Lokacija">
+                        <img src="~/Content/Icon/xls.png" />
+                    </a>
+                    <p> @r.Naziv</p>
+                    <br />
+                }
+                else if (r.Tip == ".ppt" || r.Tip == ".pptx")
+                {
+                    <a href="@r.Lokacija">
+                        <img src="~/Content/Icon/ppt.png" />
+                    </a>
+                    <p> @r.Naziv</p>
+                    <br />
+                }
+                else if (r.Tip == ".pdf")
+                {
+                    <a href="@r.Lokacija">
+                        <img src="~/Content/Icon/pdf.png" />
+                    </a>
+                    <p> @r.Naziv</p>
+                    <br />
+                }
+
+                <label for="disabledSelect">Izaberite dokument(<span style="color:#ff6a00;">Dodavanjem novog dokumenta obrisat ćete stari dokument</span>)</label>
+                <input id="file-0a" class="file" name="dokument" type="file" multiple data-min-file-count="0" />
+                <br />
+                <button type="submit" class="btn btn-primary">Snimi</button>
+            </div>
+        </div>
+        <a href="/Registar/Pregled" class="btn btn-info"> Nazad</a>
+    </div>
+</form>

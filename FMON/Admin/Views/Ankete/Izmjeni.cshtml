@@ -1,0 +1,79 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Izmjeni";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    Anketa anketa = (Anketa)ViewData["anketa"];
+    List<AnketaOdgovor> odgovori = (List<AnketaOdgovor>)ViewData["odgovori"];
+}
+
+
+
+<form method="post">
+    <div class="col-lg-6">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @if (anketa != null)
+                {
+                    <h3>Uređivanje ankete</h3>
+                    <br />
+                    <label for="disabledSelect">Izmjenite anketno pitanje</label>
+                    <input class="form-control" name="pitanje" placeholder="@anketa.Pitanje">
+                    <br />
+                    if (anketa.IsActive == true)
+                    {
+                        <input type="checkbox" name="isActive" checked="checked"><label> &nbsp;  Da li je anketa aktivna?</label>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="isActive"><label> &nbsp;  Da li je anketa aktivna?</label>
+                    }
+
+                    <br />
+                    <br />
+
+                    if (odgovori.Count() > 0)
+                    {
+                        <h3>Odgovori na pitanje</h3>
+
+
+                        <ul class="list-group">
+
+                            @foreach (AnketaOdgovor item in odgovori)
+                            {
+                                <li class="list-group-item" style="overflow:auto;">@item.Naziv (@item.BrojGlasova)<a class="pull-right btn btn-danger" href="/Ankete/ObrisiOdgovor?id=@item.OdgovorID">Obriši</a></li>
+                            }
+
+                        </ul>
+
+                    }
+                    <input type="hidden" value="@anketa.AnketaID" name="anketaId"/>
+                    <br />
+                    <br />
+                    <label for="disabledSelect">Unesite novi odgovor na anketno pitanje</label>
+                    <input class="form-control" name="odgovor" placeholder="Odgovor u anketi...">
+                    <br />
+                    <br />
+
+
+                    <button type="submit" class="btn btn-primary">Snimi</button>
+
+                }
+            </div>
+        </div>
+        <a href="/Ankete/Pregled" class="btn btn-info"> Nazad</a>
+    </div>
+</form>

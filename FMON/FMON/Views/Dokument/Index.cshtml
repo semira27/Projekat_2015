@@ -1,0 +1,69 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Public.cshtml";
+    List<Dokumenti> dok = (List<Dokumenti>)ViewData["dokumenti"];
+    List<DokumentiKategorije> dokKategorije = (List<DokumentiKategorije>)ViewData["kategorije"];
+}
+<link href="~/Content/CSS/bootstrap.vertical-tabs.css" rel="stylesheet" />
+
+<div class="straniceBody">
+    <h2 class="fmonFontColor"><b>Dokumenti</b></h2>
+
+    <div class="col-md-4 md12NopaddingLeft">
+        <!-- required for floating -->
+        <!-- Nav tabs -->
+
+        <ul class="nav nav-tabs tabs-left" style="margin-left:0px; padding-left:0px;">
+            @for (int i = 0; i < dokKategorije.Count(); i++)
+            {
+                if (i == 0)
+                {
+                    <li class="active"><a href="#@dokKategorije[i].KategorijaDokumentaID" data-toggle="tab" class="fmonFontColor doktabovi">@dokKategorije[i].Naziv</a></li>
+                }
+                else
+                {
+                    <li><a href="#@dokKategorije[i].KategorijaDokumentaID" class="fmonFontColor" data-toggle="tab">@dokKategorije[i].Naziv</a></li>
+                }
+            }
+        </ul>
+    </div>
+    <div>
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            @for (int i = 0; i < dokKategorije.Count(); i++)
+            {
+                if (i == 0)
+                {
+                    <div class="tab-pane active" id="@dokKategorije[i].KategorijaDokumentaID">
+
+                        @foreach (var item in dok.Where(x => x.DokumentKategorijaID == dokKategorije[i].KategorijaDokumentaID).ToList())
+                        {
+                            <blockquote class="dokumenti">
+                                <p><a class="fmonFontColor" href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,item.Lokacija)">@item.Naziv</a></p>
+                                <span class="spanDatum">Datum objave: @item.DatumObjave.ToShortDateString()</span>
+                            </blockquote>
+
+                        }
+
+                    </div>
+                }
+                else
+                {
+                    <div class="tab-pane" id="@dokKategorije[i].KategorijaDokumentaID">
+
+                        @foreach (var item in dok.Where(x => x.DokumentKategorijaID == dokKategorije[i].KategorijaDokumentaID).ToList())
+                        {
+                            <blockquote class="dokumenti">
+                                <p><a class="fmonFontColor" href="@string.Format("{0}{1}", FMON.Configuration.Configuration.AdminSite,item.Lokacija)">@item.Naziv</a></p>
+                                <span class="spanDatum">Datum objave: @item.DatumObjave.ToShortDateString()</span>
+                            </blockquote>
+                        }
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>

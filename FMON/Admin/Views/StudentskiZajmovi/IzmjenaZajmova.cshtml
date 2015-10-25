@@ -1,0 +1,83 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "IzmjenaZajmova";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    Obavijesti z = (Obavijesti)ViewData["zajam"];
+    List<ObavijestiDokumenti> dokumenti = (List<ObavijestiDokumenti>)ViewData["dokumenti"];
+}
+<link href="~/Content/js/FileUpload/fileinput.css" rel="stylesheet" />
+<link href="~/Content/js/FileUpload/fileinput.min.css" rel="stylesheet" />
+<script src="~/Content/js/FileUpload/fileinput.js"></script>
+<script src="~/Content/js/FileUpload/fileinput.min.js"></script>
+<script src="~/Content/js/FileUpload/fileinput_locale_es.js"></script>
+<script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    });
+</script>
+
+<form method="post" action="/StudentskiZajmovi/IzmjenaZajmova" enctype="multipart/form-data">
+    <div class="col-lg-8">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <input type="hidden" name="zajamID" value="@z.ObavijestID" />
+                <h3>Izmjena studentskog zajma</h3>
+                <br />
+                <label for="disabledSelect">Unesite naslov obavijesti</label>
+
+                <input class="form-control" name="naslov" placeholder="@z.NaslovObavijesti">
+                <br />
+                <br />
+                <label for="disabledSelect">Unesite sažetak obavijesti</label>
+                <textarea class="form-control" rows="3" name="sazetak">@z.Sazetak</textarea>
+                <br />
+                <label for="disabledSelect">Unesite obavijest</label>
+                <textarea class="form-control" rows="3" name="obavijest">@z.Obavijest</textarea>
+                <br />
+                @if (dokumenti.Count > 0)
+                {
+                    <label for="disabledSelect">Postojeći dokumenti</label>
+                    <br />
+                    foreach (ObavijestiDokumenti i in dokumenti)
+                    {
+                        <span><a href="@i.Lokacija">@i.NazivDokumenta</a></span>
+
+                    }
+                    <br />
+                    <label for="disabledSelect">Izmijenite dokumente (<span style="color:#ff6a00;">Dodavanjem novih dokumenata obrisat ćete postojeće dokumente</span>)</label>
+                    <input id="file-0a" class="file" name="dokumenti" type="file" multiple data-min-file-count="0" />
+                    <br />
+                }
+                else
+                {
+                    <label for="disabledSelect">Odaberite dokumente</label>
+                    <input id="file-0a" class="file" name="dokumenti" type="file" multiple data-min-file-count="0" />
+                    <br />
+                }
+                <button type="submit" class="btn btn-primary">Snimi</button>
+            </div>
+        </div>
+        <a href="/StudentskiZajmovi/Pregled" class="btn btn-info"> Nazad</a>
+    </div>
+</form>

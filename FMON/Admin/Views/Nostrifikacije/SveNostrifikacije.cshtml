@@ -1,0 +1,38 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "SveNostrifikacije";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<RegistarNostrifikacija> nostrifikaicje = (List<RegistarNostrifikacija>)ViewData["nostrifikacije"];
+}
+
+<link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataTable/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#nostrifikacije').DataTable();
+    });
+</script>
+
+<table id="nostrifikacije" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Nostrifikacija</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (RegistarNostrifikacija i in nostrifikaicje)
+        {
+            <tr>
+                <td>@i.Naziv</td>
+                <td>
+                    <a href="/Nostrifikacije/IzmjenaNostrifikacije?Id=@i.RegistarNostrifikacijaID" class="btn btn-success"> Izmijeni</a>
+                    <a href="/Nostrifikacije/ObrisiNostrifikaciju?Id=@i.RegistarNostrifikacijaID" class="btn btn-danger"> Obriši</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

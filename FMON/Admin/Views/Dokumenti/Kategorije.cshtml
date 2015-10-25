@@ -1,0 +1,33 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "SviDokumenti";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    List<DokumentiKategorije> kategorije = (List<DokumentiKategorije>)ViewData["kategorije"];
+}
+<link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataTable/jquery.dataTables.min.js"></script>
+
+
+
+<table id="table" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DokumentiKategorije i in kategorije)
+        {
+            <tr>
+                <td>@i.Naziv</td>
+                <td>
+                    <a href="/Dokumenti/IzmjenaKategorija?Id=@i.KategorijaDokumentaID" class="btn btn-success"> Izmijeni</a>
+                    <a href="/Dokumenti/ObrisiKategoriju?Id=@i.KategorijaDokumentaID" class="btn btn-danger"> Obriši</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

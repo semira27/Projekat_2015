@@ -1,0 +1,64 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "IzmjenaLinka";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    InstitucijaLinkovi i = (InstitucijaLinkovi)ViewData["link"];
+    List<Gradovi> kantoni = (List<Gradovi>)ViewData["kantoni"];
+}
+
+<form method="post">
+    <div class="col-lg-5">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Greška!</strong> @ViewBag.Error
+            </div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <strong>Obavljeno!</strong> @ViewBag.Success
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Izmjena linka</h3>
+                <br />
+                <input type="hidden" name="linkID" value="@i.LinkID" />
+                <br />
+                <label for="disabledSelect">Odaberite gdje link pripada</label>
+                @if (kantoni.Count() > 0)
+                {
+                    <select name="grad" class="form-control">
+
+                        @foreach (Gradovi item in kantoni)
+                        {
+                            if (i.GradID == item.GradID)
+                            {
+                                <option value="@item.GradID" selected>@item.Naziv</option>
+                            }
+                            else
+                            {
+                                <option value="@item.GradID">@item.Naziv</option>
+                            }
+
+                        }
+                    </select>
+                }
+                <br />
+                <label for="disabledSelect">Naziv linka</label>
+                <input class="form-control" name="naziv" placeholder="@i.NazivLinka">
+                <br />
+                <label for="disabledSelect">Link</label>
+                <input class="form-control" name="link" placeholder="@i.Link">
+                <br />
+                <br />
+                <button type="submit" class="btn btn-primary">Snimi</button>
+
+            </div>
+        </div>
+        <a href="/Linkovi/Pregled" class="btn btn-info"> Nazad</a>
+    </div>
+</form>

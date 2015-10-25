@@ -1,0 +1,33 @@
+﻿@using Data.Model;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Public.cshtml";
+
+    List<PitanjaOdgovori> pitanja = (List<PitanjaOdgovori>)ViewData["pitanja"];
+}
+
+<div class="straniceBody">
+    <h3 class="foontFMON">Često postavljana pitanja i odgovori</h3>
+    @if (pitanja.Count() > 0)
+    {
+        <div class="panel-group" id="accordion">         
+                @foreach (var item in pitanja)
+                { 
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" class="fmonBackColor" href="#@item.PitanjaOdgovoriID">
+                                  @item.Pitanje
+                              </a>
+                          </h4>
+                      </div>
+                        <div id="@item.PitanjaOdgovoriID" class="panel-collapse collapse" href="#@item.PitanjaOdgovoriID">
+                            <div class="panel-body">
+                                @Html.Raw(item.Odgovor)
+                            </div>
+                        </div>
+                </div>
+                }
+        </div>
+    }
+</div>
